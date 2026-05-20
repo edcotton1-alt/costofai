@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cost of Blackwell — GB200 NVL72 True-Cost Ledger</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f4f3ef;--sh:#fff;--bd:#c9c6be;--bl:#e2dfd8;
+  --tx:#18170f;--mu:#6e6b61;--fa:#aaa89f;
+  --re:#b02a1e;--am:#8f6000;--gr:#1e5c3a;--bu:#0f3d6e;
+  --ra:#faf9f6;--rh:#f0ede5;
+  --xb:#fdf1f0;--xc:#e8b0a8;
+  --cb:#fffbf0;--cc:#dfc070;
+  --ppb:#f0f4ff;--ppc:#8aaddc;
+}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Mono',monospace;background:var(--bg);color:var(--tx);font-size:12.5px;line-height:1.5;padding:0 0 80px;min-height:100vh}
+
+/* BLUEPRINT */
+#bp{position:fixed;top:0;right:0;width:280px;height:100vh;pointer-events:none;z-index:0;opacity:.045}
+.hero,.tb-bar,.wrap{position:relative;z-index:1}
+
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{background:#060504;padding:52px 20px 44px;overflow:hidden;position:relative}
+#sc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.6}
+.hi{position:relative;z-index:2;max-width:980px;margin:0 auto}
+.ey{font-size:10px;letter-spacing:.24em;color:#888;text-transform:uppercase;margin-bottom:14px;font-family:'IBM Plex Sans',sans-serif}
+.mt{font-size:40px;font-weight:300;line-height:1.1;color:#fff;margin-bottom:10px;letter-spacing:-.02em}
+.mt strong{color:#ffe033;font-weight:600}
+.hs{font-size:13px;color:#ccc;line-height:1.75;max-width:660px;margin-bottom:12px;font-family:'IBM Plex Sans',sans-serif;font-weight:300}
+.specs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.sp{padding:4px 10px;border-radius:2px;font-size:10.5px;font-family:'IBM Plex Sans',sans-serif;white-space:nowrap}
+.sp.n{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#ddd}
+.sp.y{background:rgba(255,224,51,.12);border:1px solid rgba(255,224,51,.28);color:#ffe033}
+.warn-hero{font-size:11px;color:#f5a040;line-height:1.55;max-width:660px;padding:8px 12px;border-left:3px solid #f5a040;background:rgba(245,160,64,.09);margin-bottom:16px;font-family:'IBM Plex Sans',sans-serif}
+.cl{display:flex;gap:20px;flex-wrap:wrap}
+.ci{display:flex;align-items:center;gap:6px;font-size:10px;color:#888;font-family:'IBM Plex Sans',sans-serif}
+.cd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cdh{background:#1e5c3a}.cdm{background:#c8870a}.cdl{background:#b02a1e}.cdu{background:#888}
+
+/* TICKER */
+.tb-bar{background:#110800;border-top:2px solid #ff6a00;border-bottom:2px solid #ff6a00;padding:7px 0;display:flex;align-items:center;overflow:hidden}
+.tbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#ff6a00;white-space:nowrap;flex-shrink:0;padding:0 16px;border-right:1px solid #552200;margin-right:12px}
+.tbt{overflow:hidden;flex:1}
+.tbs{display:inline-flex;gap:24px;white-space:nowrap;align-items:center;animation:tM 36s linear infinite}
+@keyframes tM{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tv{font-size:14px;font-weight:600;color:#ff8c00;font-variant-numeric:tabular-nums}
+.tu{font-size:10px;color:#bb4400;margin-left:4px}
+.ts{color:#552200;margin:0 6px}
+.tn{font-size:10px;color:#bb5500}
+
+/* CONFIDENCE TAGS */
+.ct{font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:1px 5px;border-radius:2px;margin-left:5px;font-weight:500;flex-shrink:0;font-family:'IBM Plex Sans',sans-serif}
+.cth{background:#e4f0e8;color:#1e5c3a;border:.5px solid #80c4a0}
+.ctm{background:#fdf0da;color:#8f6000;border:.5px solid #e0b060}
+.ctl{background:#fde0de;color:#b02a1e;border:.5px solid #e8b0a8}
+.ctu{background:#edece8;color:#6e6b61;border:.5px solid #c9c6be}
+.ctp{background:#e4eeff;color:#0f3d6e;border:.5px solid #8aaddc}
+.src{font-size:9px;color:var(--fa);margin-left:4px;font-style:italic}
+
+/* INFO BLOCKS */
+.ab{background:#18170f;border:1px solid #2a2920;border-radius:2px;padding:18px 20px;margin-bottom:14px}
+.at{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#777;margin-bottom:12px;font-family:'IBM Plex Sans',sans-serif}
+.ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#2a2920}
+.ac{background:#1a1908;padding:16px 18px}
+.ak{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#777;margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:500}
+.av{font-size:22px;font-weight:500;color:#f0eed8;line-height:1.1;letter-spacing:-.01em}
+.asub{font-size:11px;color:#999;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.45}
+.ac.hl .av{color:#ffe033}
+.ac.hl .ak{color:#c8a800}
+
+.pb2{background:var(--ppb);border:1px solid var(--ppc);border-radius:2px;padding:11px 14px;margin-bottom:14px;display:flex;align-items:flex-start;gap:12px;font-size:11px;line-height:1.65;color:var(--tx);font-family:'IBM Plex Sans',sans-serif}
+.pb2 strong{font-weight:600;color:var(--bu)}
+.pb2 em{font-style:italic;color:var(--mu)}
+
+.iw{background:#fff8e0;border:1.5px solid #e0b040;border-radius:2px;padding:12px 16px;margin-bottom:14px}
+.iwt{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#7a5800;margin-bottom:8px;font-weight:500;font-family:'IBM Plex Sans',sans-serif}
+.iwg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.iwi{font-size:11px;color:#3a3000;line-height:1.55;font-family:'IBM Plex Sans',sans-serif}
+.iwi strong{font-weight:600;color:#7a5800}
+
+/* EQUIV STRIP */
+.es{margin-bottom:14px}
+.est{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:8px;font-family:'IBM Plex Sans',sans-serif}
+.estrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--bl);border:1px solid var(--bd)}
+.ec{background:#fff;padding:14px 16px 12px;position:relative;overflow:hidden}
+.ec::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.ec.en::before{background:#c8870a}
+.ec.eca::before{background:#b02a1e}
+.ec.eh::before{background:#1e5c3a}
+.ec.ew::before{background:#1a6ea8}
+.ei{font-size:20px;margin-bottom:6px;display:block}
+.eb{font-size:22px;font-weight:600;color:var(--tx);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ep{font-size:10px;font-weight:400;color:var(--mu);margin-left:3px;font-family:'IBM Plex Sans',sans-serif}
+.el{font-size:11px;color:var(--tx);margin:6px 0 8px;line-height:1.4;font-weight:500;font-family:'IBM Plex Sans',sans-serif}
+.er{border-top:1px solid var(--bl);padding-top:7px;display:flex;flex-direction:column;gap:4px}
+.err{display:flex;justify-content:space-between;align-items:baseline}
+.erl{font-size:9.5px;color:var(--mu);font-family:'IBM Plex Sans',sans-serif}
+.erv{font-size:10.5px;font-weight:500;color:var(--tx);font-variant-numeric:tabular-nums}
+.esrc{font-size:9px;color:var(--fa);margin-top:7px;font-style:italic;line-height:1.5;border-top:1px solid var(--bl);padding-top:5px;font-family:'IBM Plex Sans',sans-serif}
+
+/* FLOW */
+.fs{background:#0e0d0a;padding:14px 18px;margin-bottom:14px;border-radius:2px;border:1px solid #3a3828}
+.fl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#777;margin-bottom:12px;font-family:'IBM Plex Sans',sans-serif}
+.fn2{display:flex;align-items:flex-start;overflow-x:auto;padding-bottom:4px;gap:0}
+.fb{background:#1e1c14;border:1px solid #4a4838;border-radius:2px;padding:9px 12px;text-align:center;min-width:100px;flex-shrink:0}
+.fb:hover{background:#2a2818;border-color:#8a7840}
+.fbt{font-size:11.5px;color:#fff;font-weight:500;margin-bottom:3px;line-height:1.3;font-family:'IBM Plex Sans',sans-serif}
+.fbs{font-size:9.5px;color:#999;line-height:1.45;font-family:'IBM Plex Sans',sans-serif}
+.fbv{font-size:11.5px;color:#7de8a8;margin-top:4px;font-weight:500;font-family:'IBM Plex Sans',sans-serif}
+.fa2{color:#555;font-size:16px;padding:0 5px;flex-shrink:0;margin-top:16px;align-self:center}
+.fnw{display:flex;flex-direction:column;align-items:center}
+.fal{font-size:8.5px;color:#666;text-align:center;max-width:56px;line-height:1.4;margin-top:2px;font-family:'IBM Plex Sans',sans-serif}
+
+/* SHEET */
+.sh{background:var(--sh);border:1px solid var(--bd);border-radius:2px;overflow:hidden;margin-bottom:14px;box-shadow:3px 3px 0 rgba(0,0,0,.04)}
+.to{background:#1e1d1a;padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #333}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#c03020}.dot.y{background:#d09020}.dot.g{background:#208040}
+.tn3{font-size:11px;color:#999;letter-spacing:.06em;margin-left:6px}
+.tabs{margin-left:auto;display:flex;gap:2px}
+.tab{font-size:11px;color:#999;background:#2e2c28;padding:5px 13px;border-radius:3px 3px 0 0;cursor:pointer;letter-spacing:.04em;border:1px solid #3a3838;border-bottom:none;font-family:'IBM Plex Mono',monospace;transition:background .12s,color .12s}
+.tab:hover{background:#44413c;color:#fff}
+.tab.active{background:var(--sh);color:var(--tx);border-color:var(--bd);font-weight:500}
+.fbar{background:#f7f6f2;border-bottom:1px solid var(--bl);padding:5px 12px;font-size:10px;color:var(--mu);display:flex;align-items:center;gap:10px;min-height:28px}
+.cr{font-weight:500;min-width:36px;border-right:1px solid var(--bl);padding-right:10px}
+.fx{color:var(--bu);font-style:italic;margin-right:3px}
+.tp{display:none}.tp.active{display:block}
+
+/* COLUMN GRID — 6 cols */
+:root{--cn:38px;--ca:252px;--cb:108px;--cc:108px;--cd:96px;--ce:96px}
+.chr{display:grid;grid-template-columns:var(--cn) var(--ca) var(--cb) var(--cc) var(--cd) var(--ce);background:#edece8;border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:5}
+.ch{padding:6px 8px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);border-right:1px solid var(--bl);text-align:center;font-family:'IBM Plex Sans',sans-serif}
+.ch:last-child{border-right:none}.ch.left{text-align:left}
+
+/* ROWS */
+.row{display:grid;grid-template-columns:var(--cn) var(--ca) var(--cb) var(--cc) var(--cd) var(--ce);border-bottom:1px solid var(--bl);opacity:0;animation:rI .3s ease forwards;transition:background .1s}
+@keyframes rI{to{opacity:1;transform:none}}
+.row:nth-child(even){background:var(--ra)}
+.row:hover{background:var(--rh)}
+.row.cx{background:var(--xb);animation:rI .3s ease forwards,cxP 4s ease-in-out 1s infinite}
+@keyframes cxP{0%,100%{background:var(--xb)}50%{background:#fbe6e4}}
+.row.pr{background:var(--ppb)}.row.pr:hover{background:#e4ebff}
+.row.hk{background:#fff8cc}.row.hk:hover{background:#fff3aa}
+.row.hk .chl{position:relative;overflow:hidden}
+.row.hk .chl::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,220,40,.9) 45%,transparent);transform:translateX(-110%);animation:hS 1.5s ease .3s forwards}
+@keyframes hS{to{transform:translateX(120%)}}
+
+/* P&L GRID — 3 cols */
+:root{--pn:38px;--pa:1fr;--pb2:160px}
+.pr2{display:grid;grid-template-columns:var(--pn) var(--pa) var(--pb2);border-bottom:1px solid #d0e8d8;opacity:0;animation:rI .3s ease forwards;transition:background .1s}
+.pr2:hover{background:#ecf8f2}
+.pc{padding:8px 12px;font-size:12px;border-right:1px solid #d0e8d8;display:flex;align-items:center;color:var(--tx);font-family:'IBM Plex Mono',monospace}
+.pc:last-child{border-right:none;justify-content:flex-end;font-variant-numeric:tabular-nums}
+.pc.rn{justify-content:center;font-size:9px;color:#5a7a60;background:#e4f2e8;border-right:1px solid #c0dcc8;font-family:'IBM Plex Sans',sans-serif;font-weight:500}
+.phd .pc{color:var(--mu);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-family:'IBM Plex Sans',sans-serif}
+.ptot{background:#18170f}
+.ptot .pc{color:#f0eed8;font-weight:500;border-right:1px solid #1e3828}
+.ptot .pc.rn{background:#0e2018;color:#4a8a58;border-right:1px solid #1e3828}
+.ptot .pc:last-child{color:#9addb8}
+.pr2.info{background:#f0f4ff;opacity:1;animation:none}
+.pr2.info .pc{font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.6;color:#18170f;border-right-color:#c8d8f0}
+.pr2.info .pc.rn{background:#d8e8f8;color:#0f3d6e;border-right-color:#c8d8f0}
+.pr2.warn{background:#fff8e0;opacity:1;animation:none}
+.pr2.warn .pc{font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.6;color:#3a3000;border-right-color:#e0cc80}
+.pr2.warn .pc.rn{background:#ffe8a0;color:#7a5800;border-right-color:#e0cc80}
+
+.cell{padding:7px 8px;border-right:1px solid var(--bl);display:flex;align-items:center;font-size:12px;color:var(--tx)}
+.cell:last-child{border-right:none}
+.cell.r{justify-content:flex-end;font-variant-numeric:tabular-nums}
+.cell.c{justify-content:center}
+.cell.rn{justify-content:center;font-size:9px;color:var(--fa);background:#f2f0ec;border-right:1px solid var(--bd);font-variant-numeric:tabular-nums;font-family:'IBM Plex Sans',sans-serif}
+.chip{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:3px;font-size:11px;margin-right:6px;flex-shrink:0;font-family:'IBM Plex Sans',sans-serif;font-weight:500}
+.tag{font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:1px 5px;border-radius:2px;margin-left:4px;font-family:'IBM Plex Sans',sans-serif}
+.tag.cx{background:#fde0de;color:#b02a1e;border:.5px solid #e8b0a8}
+.tag.k{background:#e4eef8;color:#0f3d6e;border:.5px solid #b0cae8}
+.tag.p{background:#e4eeff;color:#0f3d6e;border:.5px solid #8aaddc}
+.pos{color:#1e5c3a}.neg{color:#b02a1e}.wv{color:#8f6000}.dim{color:var(--mu);font-style:italic}
+
+.sec{display:grid;grid-template-columns:var(--cn) 1fr;background:#18170f;border-top:1px solid #333;border-bottom:1px solid #333;opacity:0;animation:rI .3s ease forwards}
+.sn{padding:8px;font-size:9px;color:#444;text-align:center;border-right:1px solid #333}
+.sl{padding:8px 12px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#c8c4b4;display:flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif}
+
+.sub{display:grid;grid-template-columns:var(--cn) var(--ca) var(--cb) var(--cc) var(--cd) var(--ce);border-bottom:1.5px solid var(--bd);background:#edecea;opacity:0;animation:rI .3s ease forwards}
+.sub .cell{font-size:10.5px;font-weight:500;color:var(--mu);padding:6px 8px}
+
+.gt{display:grid;grid-template-columns:var(--cn) var(--ca) var(--cb) var(--cc) var(--cd) var(--ce);background:#18170f;opacity:0;animation:rI .3s ease forwards}
+.gt .cell{color:#f0eed8;font-size:11px;font-weight:500;padding:9px 8px;border-right:1px solid #333}
+.gt .cell.pos{color:#9addb8}.gt .cell.warn{color:#f0d060}
+
+/* STAT GRID */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px;padding:14px}
+.stat{background:#f7f6f2;border:1px solid var(--bl);border-radius:2px;padding:10px 12px;opacity:0;animation:rI .3s ease forwards}
+.stat.peer{background:var(--ppb);border-color:var(--ppc)}
+.stat.ws{background:#fdf6e8;border-color:var(--cc)}
+.stat.cr{background:var(--xb);border-color:var(--xc)}
+.stl{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--mu);margin-bottom:3px;font-family:'IBM Plex Sans',sans-serif}
+.stv{font-size:17px;font-weight:500;line-height:1.15;color:var(--tx)}
+.sts{font-size:9.5px;color:var(--fa);margin-top:2px;font-family:'IBM Plex Sans',sans-serif}
+.stc{font-size:8px;letter-spacing:.08em;text-transform:uppercase;margin-top:5px;font-weight:500;font-family:'IBM Plex Sans',sans-serif}
+.stc.h{color:#1e5c3a}.stc.m{color:#8f6000}.stc.l{color:#b02a1e}
+
+/* CARBON BAR */
+.cbw{padding:0 14px 14px}
+.cbs{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif}
+.cbr{display:flex;height:28px;border-radius:2px;overflow:hidden;border:1px solid var(--bd)}
+.cbe{background:#8a8880;width:3%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#eee;flex-shrink:0}
+.cbo{background:#b87a08;flex:1;display:flex;align-items:center;padding-left:10px;font-size:10px;color:#fff4d8;font-weight:500;position:relative;overflow:hidden}
+.cbo::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:rgba(255,255,255,.12);transform:skewX(-20deg);animation:sh 3s ease-in-out infinite}
+@keyframes sh{0%{left:-60%}100%{left:130%}}
+.cbl{display:flex;gap:16px;margin-top:6px;font-size:9.5px;color:var(--mu);font-family:'IBM Plex Sans',sans-serif}
+.sw{width:8px;height:8px;border-radius:1px;display:inline-block;margin-right:3px;vertical-align:middle}
+.xo{margin:10px 14px 14px;padding:10px 12px;border-left:3px solid #b87a08;background:#fdf6e8;font-size:11.5px;color:var(--tx);line-height:1.65;font-family:'IBM Plex Sans',sans-serif}
+.xo strong{font-weight:600;color:#6a4800}
+
+/* RANGE */
+.rr{display:flex;align-items:center;gap:12px;padding:7px 14px;border-bottom:1px solid var(--bl)}
+.rl{font-size:10px;color:var(--mu);min-width:110px;flex-shrink:0;font-family:'IBM Plex Sans',sans-serif}
+.rt{flex:1;background:var(--bl);height:5px;border-radius:3px;position:relative}
+.rf{height:100%;border-radius:3px;background:#b87a08;position:relative}
+.rf::after{content:attr(data-val);position:absolute;right:0;top:-17px;font-size:9px;color:var(--tx);white-space:nowrap;font-weight:500;font-family:'IBM Plex Sans',sans-serif}
+.rv{display:flex;justify-content:space-between;font-size:8.5px;color:var(--fa);margin-top:2px;font-family:'IBM Plex Sans',sans-serif}
+
+/* PROFIT WINDOW CARDS */
+.pw{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;padding:12px 14px}
+.pwc{background:#fff;border:1px solid var(--bl);border-radius:2px;padding:10px 12px}
+.pwl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:6px;font-family:'IBM Plex Sans',sans-serif;border-bottom:1px solid var(--bl);padding-bottom:5px}
+.pwr{display:flex;flex-direction:column;gap:3px}
+.pwv{font-size:12.5px;font-weight:500;color:var(--tx)}
+.pwv.pos{color:#1e5c3a}.pwv.neg{color:#b02a1e}.pwv.warn{color:#8f6000}
+.pwsub{font-size:9.5px;color:var(--mu);font-family:'IBM Plex Sans',sans-serif}
+
+/* CAVEAT */
+.ci3{display:grid;grid-template-columns:50px 1fr;border-bottom:1px solid var(--cc);transition:background .15s}
+.ci3:last-child{border-bottom:none}
+.ci3:hover{background:#fffae8}
+.cn2{padding:10px 8px;font-size:9px;color:#8f6000;background:#fff8e0;border-right:1px solid var(--cc);display:flex;align-items:flex-start;justify-content:center;padding-top:11px;font-family:'IBM Plex Sans',sans-serif;font-weight:500}
+.ct2{padding:10px 14px;font-size:11.5px;color:var(--tx);line-height:1.6;font-family:'IBM Plex Sans',sans-serif}
+.ct2 strong{font-weight:600;color:#5a3800}
+.csrc{font-size:9.5px;color:var(--fa);margin-top:4px;font-style:italic}
+.cpeer{font-size:9.5px;color:var(--bu);margin-top:3px;font-weight:600}
+.cwarn{font-size:9.5px;color:var(--re);margin-top:3px;font-weight:600}
+
+/* AUDIT TABLE */
+.aud{margin-bottom:14px}
+.aud-title{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:8px;font-family:'IBM Plex Sans',sans-serif}
+.aud-grid{display:grid;grid-template-columns:160px repeat(6,1fr);border:1px solid var(--bd);border-radius:2px;overflow:hidden;background:var(--bd);gap:1px}
+.aud-hdr{background:#18170f;padding:8px 10px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#c8c4b4;font-family:'IBM Plex Sans',sans-serif;display:flex;align-items:center}
+.aud-row-lbl{background:#f2f0ec;padding:9px 12px;font-size:11px;font-weight:500;color:var(--tx);font-family:'IBM Plex Sans',sans-serif;display:flex;align-items:center;border-right:none}
+.aud-cell{padding:9px 10px;font-size:10px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.4;font-family:'IBM Plex Sans',sans-serif}
+.aud-cell.yes{background:#e8f4ec;color:#1e5c3a;font-weight:500}
+.aud-cell.no{background:#fde8e6;color:#b02a1e;font-weight:500}
+.aud-cell.part{background:#fdf4e0;color:#7a5000;font-weight:500}
+.aud-cell.na{background:#f2f0ec;color:#aaa89f}
+
+/* EDITORIAL */
+.ed{border-left:3px solid var(--re);padding:12px 16px;margin:14px 0;background:var(--xb);font-size:11.5px;line-height:1.75;font-family:'IBM Plex Sans',sans-serif;color:var(--tx)}
+.ed p+p{margin-top:8px;color:#5a5040}
+.ed .pull{font-size:14px;font-weight:500;color:var(--tx);line-height:1.5;margin-bottom:10px;font-style:italic;border-bottom:1px solid var(--xc);padding-bottom:10px}
+
+/* SOURCES */
+.src-box{margin-top:14px;padding:14px 16px;background:var(--sh);border:1px solid var(--bl);border-radius:2px;font-size:10px;color:var(--mu);line-height:1.75;font-family:'IBM Plex Sans',sans-serif}
+.src-t{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--fa);margin-bottom:8px}
+.src-box ol{padding-left:18px}
+.src-box li{margin-bottom:3px}
+.psrc{color:var(--bu);font-weight:600}
+.ft{text-align:center;font-size:9.5px;color:var(--fa);letter-spacing:.06em;padding-top:14px;border-top:1px solid var(--bl);margin-top:14px;line-height:1.6;font-family:'IBM Plex Sans',sans-serif}
+</style>
+</head>
+<body>
+
+<!-- BLUEPRINT WATERMARK: GB200 NVL72 rack schematic -->
+<svg id="bp" viewBox="0 0 280 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+<defs>
+<style>.bp{stroke:#1060c0;fill:none;stroke-linecap:round}.bpt{fill:#1060c0;font-family:monospace;font-size:7px}</style>
+<pattern id="rp" x="0" y="0" width="280" height="450" patternUnits="userSpaceOnUse">
+<rect class="bp" x="28" y="8" width="224" height="438" rx="2" stroke-width="2.2"/>
+<rect class="bp" x="28" y="8" width="14" height="438" stroke-width=".8"/>
+<rect class="bp" x="238" y="8" width="14" height="438" stroke-width=".8"/>
+<g class="bp" stroke-width=".55">
+<rect x="31" y="14" width="4" height="6" rx=".4"/><rect x="31" y="26" width="4" height="6" rx=".4"/>
+<rect x="31" y="38" width="4" height="6" rx=".4"/><rect x="31" y="50" width="4" height="6" rx=".4"/>
+<rect x="31" y="62" width="4" height="6" rx=".4"/><rect x="31" y="74" width="4" height="6" rx=".4"/>
+<rect x="31" y="86" width="4" height="6" rx=".4"/><rect x="31" y="98" width="4" height="6" rx=".4"/>
+<rect x="31" y="110" width="4" height="6" rx=".4"/><rect x="31" y="122" width="4" height="6" rx=".4"/>
+<rect x="31" y="134" width="4" height="6" rx=".4"/><rect x="31" y="146" width="4" height="6" rx=".4"/>
+<rect x="31" y="158" width="4" height="6" rx=".4"/><rect x="31" y="170" width="4" height="6" rx=".4"/>
+<rect x="31" y="182" width="4" height="6" rx=".4"/><rect x="31" y="194" width="4" height="6" rx=".4"/>
+<rect x="31" y="206" width="4" height="6" rx=".4"/><rect x="31" y="218" width="4" height="6" rx=".4"/>
+<rect x="31" y="230" width="4" height="6" rx=".4"/><rect x="31" y="242" width="4" height="6" rx=".4"/>
+<rect x="31" y="254" width="4" height="6" rx=".4"/><rect x="31" y="266" width="4" height="6" rx=".4"/>
+<rect x="31" y="278" width="4" height="6" rx=".4"/><rect x="31" y="290" width="4" height="6" rx=".4"/>
+<rect x="31" y="302" width="4" height="6" rx=".4"/><rect x="31" y="314" width="4" height="6" rx=".4"/>
+<rect x="31" y="326" width="4" height="6" rx=".4"/><rect x="31" y="338" width="4" height="6" rx=".4"/>
+<rect x="31" y="350" width="4" height="6" rx=".4"/><rect x="31" y="362" width="4" height="6" rx=".4"/>
+<rect x="241" y="14" width="4" height="6" rx=".4"/><rect x="241" y="26" width="4" height="6" rx=".4"/>
+<rect x="241" y="38" width="4" height="6" rx=".4"/><rect x="241" y="50" width="4" height="6" rx=".4"/>
+<rect x="241" y="62" width="4" height="6" rx=".4"/><rect x="241" y="74" width="4" height="6" rx=".4"/>
+<rect x="241" y="86" width="4" height="6" rx=".4"/><rect x="241" y="98" width="4" height="6" rx=".4"/>
+<rect x="241" y="110" width="4" height="6" rx=".4"/><rect x="241" y="122" width="4" height="6" rx=".4"/>
+<rect x="241" y="134" width="4" height="6" rx=".4"/><rect x="241" y="146" width="4" height="6" rx=".4"/>
+<rect x="241" y="158" width="4" height="6" rx=".4"/><rect x="241" y="170" width="4" height="6" rx=".4"/>
+<rect x="241" y="182" width="4" height="6" rx=".4"/><rect x="241" y="194" width="4" height="6" rx=".4"/>
+<rect x="241" y="206" width="4" height="6" rx=".4"/><rect x="241" y="218" width="4" height="6" rx=".4"/>
+<rect x="241" y="230" width="4" height="6" rx=".4"/><rect x="241" y="242" width="4" height="6" rx=".4"/>
+<rect x="241" y="254" width="4" height="6" rx=".4"/><rect x="241" y="266" width="4" height="6" rx=".4"/>
+<rect x="241" y="278" width="4" height="6" rx=".4"/><rect x="241" y="290" width="4" height="6" rx=".4"/>
+<rect x="241" y="302" width="4" height="6" rx=".4"/><rect x="241" y="314" width="4" height="6" rx=".4"/>
+<rect x="241" y="326" width="4" height="6" rx=".4"/><rect x="241" y="338" width="4" height="6" rx=".4"/>
+<rect x="241" y="350" width="4" height="6" rx=".4"/><rect x="241" y="362" width="4" height="6" rx=".4"/>
+</g>
+<!-- 18 compute trays (2U each, 4B200+2Grace per tray) -->
+<g class="bp" stroke-width=".85">
+<rect x="42" y="10" width="196" height="13" rx="1"/>
+<rect x="42" y="25" width="196" height="13" rx="1"/>
+<rect x="42" y="40" width="196" height="13" rx="1"/>
+<rect x="42" y="55" width="196" height="13" rx="1"/>
+<rect x="42" y="70" width="196" height="13" rx="1"/>
+<rect x="42" y="85" width="196" height="13" rx="1"/>
+<rect x="42" y="100" width="196" height="13" rx="1"/>
+<rect x="42" y="115" width="196" height="13" rx="1"/>
+<rect x="42" y="130" width="196" height="13" rx="1"/>
+<rect x="42" y="145" width="196" height="13" rx="1"/>
+<rect x="42" y="160" width="196" height="13" rx="1"/>
+<rect x="42" y="175" width="196" height="13" rx="1"/>
+<rect x="42" y="190" width="196" height="13" rx="1"/>
+<rect x="42" y="205" width="196" height="13" rx="1"/>
+<rect x="42" y="220" width="196" height="13" rx=".8"/>
+<rect x="42" y="235" width="196" height="13" rx=".8"/>
+<rect x="42" y="250" width="196" height="13" rx=".8"/>
+<rect x="42" y="265" width="196" height="13" rx=".8"/>
+</g>
+<!-- GPU chips per tray (4 B200 + 2 Grace, simplified) -->
+<g class="bp" stroke-width=".4">
+<rect x="46" y="12" width="8" height="8" rx=".6"/><rect x="56" y="12" width="8" height="8" rx=".6"/><rect x="66" y="12" width="8" height="8" rx=".6"/><rect x="76" y="12" width="8" height="8" rx=".6"/><rect x="136" y="12" width="8" height="8" rx=".6"/><rect x="146" y="12" width="8" height="8" rx=".6"/><rect x="156" y="12" width="8" height="8" rx=".6"/><rect x="166" y="12" width="8" height="8" rx=".6"/>
+<rect x="46" y="27" width="8" height="8" rx=".6"/><rect x="56" y="27" width="8" height="8" rx=".6"/><rect x="66" y="27" width="8" height="8" rx=".6"/><rect x="76" y="27" width="8" height="8" rx=".6"/><rect x="136" y="27" width="8" height="8" rx=".6"/><rect x="146" y="27" width="8" height="8" rx=".6"/><rect x="156" y="27" width="8" height="8" rx=".6"/><rect x="166" y="27" width="8" height="8" rx=".6"/>
+<rect x="46" y="42" width="8" height="8" rx=".6"/><rect x="56" y="42" width="8" height="8" rx=".6"/><rect x="66" y="42" width="8" height="8" rx=".6"/><rect x="76" y="42" width="8" height="8" rx=".6"/><rect x="136" y="42" width="8" height="8" rx=".6"/><rect x="146" y="42" width="8" height="8" rx=".6"/><rect x="156" y="42" width="8" height="8" rx=".6"/><rect x="166" y="42" width="8" height="8" rx=".6"/>
+</g>
+<!-- 9 NVLink switch trays -->
+<g class="bp" stroke-width=".7" stroke-dasharray="4,1.5">
+<rect x="42" y="283" width="196" height="8" rx=".8"/>
+<rect x="42" y="293" width="196" height="8" rx=".8"/>
+<rect x="42" y="303" width="196" height="8" rx=".8"/>
+<rect x="42" y="313" width="196" height="8" rx=".8"/>
+<rect x="42" y="323" width="196" height="8" rx=".8"/>
+<rect x="42" y="333" width="196" height="8" rx=".8"/>
+<rect x="42" y="343" width="196" height="8" rx=".8"/>
+<rect x="42" y="353" width="196" height="8" rx=".8"/>
+<rect x="42" y="363" width="196" height="8" rx=".8"/>
+</g>
+<!-- Power shelves -->
+<rect class="bp" x="42" y="376" width="196" height="20" rx=".8" stroke-width="1"/>
+<g class="bp" stroke-width=".5">
+<rect x="46" y="379" width="18" height="11" rx=".7"/><rect x="68" y="379" width="18" height="11" rx=".7"/>
+<rect x="90" y="379" width="18" height="11" rx=".7"/><rect x="150" y="379" width="18" height="11" rx=".7"/>
+<rect x="172" y="379" width="18" height="11" rx=".7"/><rect x="194" y="379" width="18" height="11" rx=".7"/>
+</g>
+<!-- CDU / liquid cooling -->
+<rect class="bp" x="42" y="400" width="196" height="16" rx=".8" stroke-width=".9"/>
+<text class="bpt" x="46" y="411">CDU / LIQUID COOLING INFRASTRUCTURE</text>
+<!-- dim lines -->
+<line class="bp" x1="14" y1="10" x2="14" y2="418" stroke-width=".5" stroke-dasharray="3,2"/>
+<line class="bp" x1="10" y1="10" x2="18" y2="10" stroke-width=".5"/>
+<line class="bp" x1="10" y1="418" x2="18" y2="418" stroke-width=".5"/>
+<text class="bpt" x="2" y="220" transform="rotate(-90,2,220)">GB200 NVL72 &middot; 72B+36G &middot; ~120kW</text>
+<!-- title block -->
+<rect class="bp" x="42" y="422" width="196" height="22" rx=".8" stroke-width=".6"/>
+<line class="bp" x1="140" y1="422" x2="140" y2="444" stroke-width=".4"/>
+<text class="bpt" x="46" y="431">GB200 NVL72 RACK</text>
+<text class="bpt" x="46" y="440">~120 kW CLASS</text>
+<text class="bpt" x="144" y="431">72&times; B200 + 36&times; Grace</text>
+<text class="bpt" x="144" y="440">~1.36 t &middot; liquid cooled</text>
+</pattern>
+<rect width="280" height="900" fill="url(#rp)"/>
+</svg>
+
+<!-- HERO -->
+<div class="hero">
+<canvas id="sc"></canvas>
+<div class="hi wrap">
+  <div class="ey">True-Cost Accounting &middot; Confidence-Banded Model &middot; v8.0</div>
+  <h1 class="mt">The Cost of <strong>Blackwell</strong></h1>
+  <div class="hs">A proxy model of the GB200 NVL72 rack-scale system built from what is publicly available. 72 Blackwell GPUs. 36 Grace CPUs. ~120&nbsp;kW-class load. Not a server &mdash; a small building&rsquo;s worth of power, distilled into 1.36 tonnes of extracted earth.</div>
+  <div class="specs">
+    <span class="sp y">GB200 NVL72 rack</span>
+    <span class="sp n">72&times; Blackwell B200</span>
+    <span class="sp n">36&times; Grace CPUs</span>
+    <span class="sp n">18 compute trays &middot; 9 NVLink switch trays</span>
+    <span class="sp y">~120 kW-class</span>
+    <span class="sp n">Liquid-cooled</span>
+    <span class="sp n">1.36 t confirmed</span>
+  </div>
+  <div class="warn-hero">&#9888;&nbsp; No peer-reviewed elemental analysis of B200 or H100 exists as of May 2026. Material composition uses Falk et al. 2026 A100 ICP-OES data as a lower-generation proxy. Every figure carries a confidence label.</div>
+  <div class="cl">
+    <div class="ci"><div class="cd cdh"></div>High &mdash; manufacturer-specified or peer-reviewed</div>
+    <div class="ci"><div class="cd cdm"></div>Medium &mdash; modelled from published proxies</div>
+    <div class="ci"><div class="cd cdl"></div>Low &mdash; estimated or extrapolated</div>
+    <div class="ci"><div class="cd cdu"></div>Unknown &mdash; not publicly disclosed</div>
+  </div>
+</div>
+</div>
+
+<!-- TICKER -->
+<div class="tb-bar">
+  <span class="tbl">CO&#8322; live &mdash; GB200 NVL72</span>
+  <div class="tbt"><div class="tbs">
+    <span class="tv" id="tv1">0.0000</span><span class="tu">kg CO&#8322;e since page load</span>
+    <span class="ts">&#9658;</span><span class="tn">1,334 kg/day &middot; 120kW &times; 24h &times; PUE 1.2 &times; 0.386 kg/kWh</span>
+    <span class="ts">&#9658;</span><span class="tn">= 115&ndash;120 US homes &middot; ~1.3 NYC&ndash;LA flights/day &middot; 34 US residents&rsquo; annual footprint per year</span>
+    <span class="ts">&#9658;</span><span class="tn">Day 24&ndash;38: operational carbon surpasses all embodied carbon</span>
+    <span class="ts">&#9658;</span><span class="tn">Reserved contract: $3.30&ndash;3.50/GPU-hr &middot; rack ASP ~$1.5&ndash;2M [A,D]</span>
+    <span class="ts">&#9658;</span>
+    <span class="tv" id="tv2">0.0000</span><span class="tu">kg CO&#8322;e since page load</span>
+    <span class="ts">&#9658;</span><span class="tn">1,334 kg/day &middot; 120kW &times; 24h &times; PUE 1.2 &times; 0.386 kg/kWh</span>
+    <span class="ts">&#9658;</span><span class="tn">= 115&ndash;120 US homes &middot; ~1.3 NYC&ndash;LA flights/day &middot; 34 US residents&rsquo; annual footprint per year</span>
+    <span class="ts">&#9658;</span><span class="tn">Day 24&ndash;38: operational carbon surpasses all embodied carbon</span>
+    <span class="ts">&#9658;</span><span class="tn">Reserved contract: $3.30&ndash;3.50/GPU-hr &middot; rack ASP ~$1.5&ndash;2M [A,D]</span>
+    <span class="ts">&#9658;</span>
+  </div></div>
+</div>
+
+<div class="wrap" style="padding-top:18px">
+
+<!-- ARCH SPEC -->
+<div class="ab">
+  <div class="at" style="border-bottom:1px solid #2a2920;padding-bottom:12px;margin-bottom:16px">GB200 NVL72 &mdash; architecture (Nvidia-specified) <span class="ct cth">high confidence</span></div>
+  <div class="ag">
+    <div class="ac hl"><div class="ak">GPUs</div><div class="av">72&times; B200</div><div class="asub">GB200 modelled; GB300 now shipping [K]</div></div>
+    <div class="ac"><div class="ak">CPUs</div><div class="av">36&times; Grace</div><div class="asub">ARM, co-packaged with B200</div></div>
+    <div class="ac"><div class="ak">Compute trays</div><div class="av">18</div><div class="asub">2&times; Grace + 4&times; B200 each</div></div>
+    <div class="ac"><div class="ak">NVLink switch trays</div><div class="av">9</div><div class="asub">Rack-scale NVLink fabric</div></div>
+    <div class="ac hl"><div class="ak">Power class</div><div class="av">~120 kW</div><div class="asub">Spec 120 kW &middot; HPE measured 132 kW deployed</div></div>
+    <div class="ac"><div class="ak">Cooling</div><div class="av">Liquid</div><div class="asub">Direct liquid, CDU, cold plates</div></div>
+    <div class="ac"><div class="ak">Rack mass</div><div class="av">~1.36 t</div><div class="asub">1.36 t &mdash; confirmed Spheron, Sunbird, HPE 2024&ndash;2025</div></div>
+    <div class="ac"><div class="ak">PUE (est.)</div><div class="av">~1.2</div><div class="asub">Liquid cooling advantage</div></div>
+  </div>
+</div>
+
+<!-- PAPER BADGE -->
+<div class="pb2">
+  <div style="font-size:18px;flex-shrink:0;margin-top:1px">&#128196;</div>
+  <div>
+    <strong>Only peer-reviewed elemental source:</strong> Falk et al. &ldquo;From computation to environmental cost.&rdquo; <em>Commun. Earth Environ.</em> 7, 397 (2026). ICP-OES on Nvidia <strong>A100 SXM 40GB</strong> &mdash; 32 elements identified, 93% of GPU mass classified hazardous. Used here as lower-generation proxy for Blackwell material categories. No public peer-reviewed teardown of B200, H100, or any post-Ampere GPU exists as of May 2026. <em>All B200 composition claims in this ledger are proxy inferences, not measurements.</em>
+    <div style="margin-top:4px;font-size:9.5px;color:var(--fa);font-style:italic">DOI: 10.1038/s43247-026-03537-5 &middot; Open Access CC BY 4.0</div>
+  </div>
+</div>
+
+<!-- WHAT THIS IS -->
+<div style="background:#18170f;border:1px solid #2a2920;border-radius:2px;padding:16px 18px;margin-bottom:14px;font-family:'IBM Plex Sans',sans-serif">
+  <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:12px;font-weight:500">How to use this document</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#2a2920">
+    <div style="background:#1a1908;padding:14px 16px">
+      <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c8a800;margin-bottom:8px;font-weight:600">&#10003;&nbsp; On firm ground &mdash; use this to say:</div>
+      <div style="font-size:12px;color:#e8e4cc;line-height:1.75">&ldquo;Based on Nvidia&rsquo;s own ISO 14067-reviewed PCF data and standard US grid metrics, a Blackwell rack&rsquo;s operational carbon completely overtakes its manufacturing carbon footprint somewhere between <strong style="color:#ffe033">Day 15 and Day 45</strong> &mdash; making its operational lifetime efficiency the only variable that truly matters.&rdquo;</div>
+      <div style="margin-top:10px;font-size:11px;color:#888;line-height:1.6">Also: the reserved contract economics, the deployment lag risk, the Jevons&rsquo; Paradox argument, the pollution taxonomy, the audit gap table.</div>
+    </div>
+    <div style="background:#2a0808;padding:14px 16px">
+      <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#f08080;margin-bottom:8px;font-weight:600">&#10007;&nbsp; Do not use this to say:</div>
+      <div style="font-size:12px;color:#e8ccc0;line-height:1.75">&ldquo;A Blackwell rack contains exactly 1.2 grams of cobalt and uses 5,000 litres of water a day.&rdquo;</div>
+      <div style="margin-top:10px;font-size:11px;color:#a88880;line-height:1.6">The cobalt figure is scaled from A100 ICP-OES data (Falk et al. 2026) &mdash; Blackwell uses CoWoS-L co-packaging and a different architecture. The water figure is deployment-dependent and zero for some closed-loop configurations. These are proxy boundaries, not measurements. See C-01, C-06.</div>
+    </div>
+  </div>
+  <div style="background:#0e0d0a;padding:10px 16px;margin-top:1px;font-size:11px;color:#aaa;line-height:1.6;font-style:italic">
+    This is a confidence-banded forensic proxy model &mdash; not a peer-reviewed teardown. It builds a bounded argument around what is publicly verifiable versus what remains hidden. Methodological transparency is the point: every figure carries a confidence label, every caveat is documented, every proxy is named. &ldquo;A brilliant piece of critical infrastructure accounting that uses rigorous logic to fill the intentional blanks left by corporate disclosures.&rdquo;
+  </div>
+</div>
+
+<!-- EQUIVALENTS -->
+<div class="es">
+  <div class="est">Daily resource consumption &mdash; one GB200 NVL72 rack at 120 kW &middot; continuous operation <span class="ct ctm" style="vertical-align:middle">medium confidence</span></div>
+  <div class="estrip">
+    <div class="ec en">
+      <span class="ei">&#9889;</span><div class="eb">3,456<span class="ep">kWh/day</span></div>
+      <div class="el">Electricity &mdash; 120 kW &times; 24h &times; PUE 1.2</div>
+      <div class="er">
+        <div class="err"><span class="erl">Per hour</span><span class="erv">144 kWh</span></div>
+        <div class="err"><span class="erl">Per week</span><span class="erv">24,192 kWh</span></div>
+        <div class="err"><span class="erl">Per year</span><span class="erv">1,261,440 kWh</span></div>
+      </div>
+      <div class="esrc">= 115 average US homes (EIA 2023: 30 kWh/day avg) &middot; ~10&times; an 8&times;H100 DGX system</div>
+    </div>
+    <div class="ec eca">
+      <span class="ei">&#128168;</span><div class="eb">1,334<span class="ep">kg CO&#8322;/day</span></div>
+      <div class="el">Carbon &mdash; 0.386 kg/kWh US grid avg (EIA eGRID 2023)</div>
+      <div class="er">
+        <div class="err"><span class="erl">Per hour</span><span class="erv">55.6 kg</span></div>
+        <div class="err"><span class="erl">Per week</span><span class="erv">9,338 kg</span></div>
+        <div class="err"><span class="erl">Per year</span><span class="erv">486,910 kg</span></div>
+      </div>
+      <div class="esrc">Driving a petrol car 5,379 km/day (EPA 0.248 kg CO&#8322;/km) &middot; or ~1.3 NYC&ndash;LA return flights per day (~492/yr)</div>
+    </div>
+    <div class="ec eca">
+      <span class="ei">&#9992;&#65039;</span><div class="eb">~492<span class="ep">flights/yr</span></div>
+      <div class="el">NYC&ndash;LA return trip CO&#8322; equivalents</div>
+      <div class="er">
+        <div class="err"><span class="erl">Per day</span><span class="erv">~1.3 flights</span></div>
+        <div class="err"><span class="erl">Per week</span><span class="erv">~9.4 flights</span></div>
+        <div class="err"><span class="erl">2-yr lifetime</span><span class="erv">~984 flights</span></div>
+      </div>
+      <div class="esrc">NYC&ndash;LA round trip &asymp; 990 kg CO&#8322;/passenger &middot; 486,910 kg/yr &divide; 990 = 492</div>
+    </div>
+    <div class="ec eh">
+      <span class="ei">&#127968;</span><div class="eb">115–120<span class="ep">homes</span></div>
+      <div class="el">Average US households powered by one rack (est.)</div>
+      <div class="er">
+        <div class="err"><span class="erl">Rack/year</span><span class="erv">1,261,440 kWh</span></div>
+        <div class="err"><span class="erl">Home/year</span><span class="erv">10,500 kWh</span></div>
+        <div class="err"><span class="erl">Range</span><span class="erv">115 (30kWh/d) – 120 (10,500kWh/yr)</span></div>
+      </div>
+      <div class="esrc">EIA 2023: US residential avg 10,500 kWh/yr</div>
+    </div>
+    <div class="ec ew">
+      <span class="ei">&#127754;</span><div class="eb">1,173<span class="ep">L per chip</span></div>
+      <div class="el">TSMC water to manufacture one B200 GPU</div>
+      <div class="er">
+        <div class="err"><span class="erl">What this is</span><span class="erv" style="font-size:10px;text-align:right">Ultrapure water used by TSMC fab to clean wafers, etch, rinse &amp; planarize during chip production</span></div>
+        <div class="err"><span class="erl">Per B200 chip</span><span class="erv">~310 gal / 1,173 L</span></div>
+        <div class="err"><span class="erl">Full rack (72 B200 + 36 Grace + NVLink est.)</span><span class="erv">~118,000 L</span></div>
+        <div class="err"><span class="erl">= daily water use of</span><span class="erv">~833 Americans</span></div>
+        <div class="err"><span class="erl">Appears on any invoice</span><span class="erv">$0 &mdash; never billed</span></div>
+      </div>
+      <div class="esrc">TechInsights Aug 2025 [J]: IC fabrication water only &mdash; does not include packaging, assembly, shipping, or data centre cooling water. Murphy yield model, 90% fab utilisation, location-based Scope 2. <span class="ct ctm" style="vertical-align:middle;font-size:8px">medium confidence</span></div>
+    </div>
+    <div class="ec ew">
+      <span class="ei">&#128167;</span><div class="eb">~5,000<span class="ep">L/day</span></div>
+      <div class="el">Liquid cooling water &mdash; rack ops estimate</div>
+      <div class="er">
+        <div class="err"><span class="erl">Per year</span><span class="erv">~1,825,000 L</span></div>
+        <div class="err"><span class="erl">= Americans/day</span><span class="erv">~35 people</span></div>
+        <div class="err"><span class="erl">Cost in ledger</span><span class="erv">$0 &mdash; unpriced</span></div>
+      </div>
+      <div class="esrc">Rough estimate. Nvidia internal email (Dec 2025): Microsoft&rsquo;s GB200 facility-level cooling described as &ldquo;wasteful&rdquo; &mdash; uses air cooling on top of in-rack liquid cooling, higher energy, lower water. Real PUE may be 1.3&ndash;1.4 not 1.2. [I, low confidence]</div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW -->
+<div style="margin-bottom:14px">
+  <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:8px;font-family:'IBM Plex Sans',sans-serif">Value chain &mdash; mine to model &middot; who captures the margin</div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:2px;background:var(--bl);border:1px solid var(--bd);border-radius:2px;overflow:hidden">
+
+    <!-- Header row: entity names -->
+    <div style="background:#18170f;padding:9px 10px;text-align:center"><div style="font-size:11.5px;font-weight:600;color:#fff;font-family:'IBM Plex Sans',sans-serif;margin-bottom:2px">Miners</div><div style="font-size:9.5px;color:#aaa;font-family:'IBM Plex Sans',sans-serif;line-height:1.5">DRC, Mongolia<br>Indonesia, Chile</div></div>
+    <div style="background:#18170f;padding:9px 10px;text-align:center"><div style="font-size:11.5px;font-weight:600;color:#fff;font-family:'IBM Plex Sans',sans-serif;margin-bottom:2px">TSMC / Samsung</div><div style="font-size:9.5px;color:#aaa;font-family:'IBM Plex Sans',sans-serif;line-height:1.5">Taiwan, Korea<br>3nm&ndash;5nm fabs</div></div>
+    <div style="background:#18170f;padding:9px 10px;text-align:center"><div style="font-size:11.5px;font-weight:600;color:#fff;font-family:'IBM Plex Sans',sans-serif;margin-bottom:2px">Nvidia</div><div style="font-size:9.5px;color:#aaa;font-family:'IBM Plex Sans',sans-serif;line-height:1.5">Design + IP<br>Fabless</div></div>
+    <div style="background:#18170f;padding:9px 10px;text-align:center"><div style="font-size:11.5px;font-weight:600;color:#fff;font-family:'IBM Plex Sans',sans-serif;margin-bottom:2px">Cloud / DC Ops</div><div style="font-size:9.5px;color:#aaa;font-family:'IBM Plex Sans',sans-serif;line-height:1.5">CoreWeave, Meta<br>Google, Microsoft</div></div>
+    <div style="background:#18170f;padding:9px 10px;text-align:center"><div style="font-size:11.5px;font-weight:600;color:#fff;font-family:'IBM Plex Sans',sans-serif;margin-bottom:2px">AI Companies</div><div style="font-size:9.5px;color:#aaa;font-family:'IBM Plex Sans',sans-serif;line-height:1.5">OpenAI, Anthropic<br>Mistral, xAI</div></div>
+    <div style="background:#18170f;padding:9px 10px;text-align:center"><div style="font-size:11.5px;font-weight:600;color:#9addb8;font-family:'IBM Plex Sans',sans-serif;margin-bottom:2px">End Users</div><div style="font-size:9.5px;color:#aaa;font-family:'IBM Plex Sans',sans-serif;line-height:1.5">Enterprises<br>Developers</div></div>
+
+    <!-- Gross margin row -->
+    <div style="background:#fff;padding:8px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:4px">Gross margin</div><div style="font-size:16px;font-weight:600;color:#b02a1e;font-family:'IBM Plex Mono',monospace">5&ndash;15%</div></div>
+    <div style="background:#fff;padding:8px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:4px">Gross margin</div><div style="font-size:16px;font-weight:600;color:#1e5c3a;font-family:'IBM Plex Mono',monospace">~53%</div></div>
+    <div style="background:#fff;padding:8px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:4px">Gross margin</div><div style="font-size:16px;font-weight:600;color:#1e5c3a;font-family:'IBM Plex Mono',monospace">~75%</div></div>
+    <div style="background:#fff;padding:8px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:4px">Gross margin</div><div style="font-size:16px;font-weight:600;color:#1e5c3a;font-family:'IBM Plex Mono',monospace">~53%</div></div>
+    <div style="background:#fff;padding:8px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:4px">Margin</div><div style="font-size:14px;font-weight:500;color:#8f6000;font-family:'IBM Plex Mono',monospace">varies</div></div>
+    <div style="background:#fff;padding:8px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:4px">Price paid</div><div style="font-size:14px;font-weight:500;color:#18170f;font-family:'IBM Plex Mono',monospace">$20&ndash;200/mo</div></div>
+
+    <!-- What they sell row -->
+    <div style="background:var(--ra);padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">What they sell</div><div style="font-size:10.5px;color:var(--tx);font-family:'IBM Plex Sans',sans-serif">Raw ore &amp; refined metals</div></div>
+    <div style="background:var(--ra);padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">What they sell</div><div style="font-size:10.5px;color:var(--tx);font-family:'IBM Plex Sans',sans-serif">GPU &amp; CPU dies</div></div>
+    <div style="background:var(--ra);padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">What they sell</div><div style="font-size:10.5px;color:var(--tx);font-family:'IBM Plex Sans',sans-serif">~$1.5&ndash;2M/rack [D]</div></div>
+    <div style="background:var(--ra);padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">What they sell</div><div style="font-size:10.5px;color:var(--tx);font-family:'IBM Plex Sans',sans-serif">$3.30&ndash;3.50/GPU-hr [A]</div></div>
+    <div style="background:var(--ra);padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">What they sell</div><div style="font-size:10.5px;color:var(--tx);font-family:'IBM Plex Sans',sans-serif">API calls &amp; products</div></div>
+    <div style="background:var(--ra);padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">What they pay</div><div style="font-size:10.5px;color:var(--tx);font-family:'IBM Plex Sans',sans-serif">Subscription / usage</div></div>
+
+    <!-- Revenue scale row -->
+    <div style="background:#fde8e6;padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8a2010;font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">Revenue scale</div><div style="font-size:10.5px;color:#5a0a04;font-weight:500;font-family:'IBM Plex Mono',monospace">~$1&ndash;3/day wage<br>(ASM workers)</div></div>
+    <div style="background:#e8f4ec;padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#1a4a2a;font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">Revenue scale</div><div style="font-size:10.5px;color:#18170f;font-weight:500;font-family:'IBM Plex Mono',monospace">$90B/yr [17]</div></div>
+    <div style="background:#e8f4ec;padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#1a4a2a;font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">Revenue scale</div><div style="font-size:10.5px;color:#18170f;font-weight:500;font-family:'IBM Plex Mono',monospace">$130B/yr [18]</div></div>
+    <div style="background:#e8f4ec;padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#1a4a2a;font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">Revenue scale</div><div style="font-size:10.5px;color:#18170f;font-weight:500;font-family:'IBM Plex Mono',monospace">$2.1B/qtr [C]</div></div>
+    <div style="background:#e8f4ec;padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#1a4a2a;font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">Revenue scale</div><div style="font-size:10.5px;color:#18170f;font-weight:500;font-family:'IBM Plex Mono',monospace">$billions/yr</div></div>
+    <div style="background:#f7f6f2;padding:7px 10px;text-align:center"><div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif;margin-bottom:3px">Spend</div><div style="font-size:10.5px;color:#18170f;font-weight:500;font-family:'IBM Plex Mono',monospace">$20&ndash;$200/mo</div></div>
+
+  </div>
+  <div style="font-size:9.5px;color:var(--fa);margin-top:6px;font-family:'IBM Plex Sans',sans-serif;font-style:italic">Sources: [A] CloudSyntrix reserved pricing &middot; [C] CoreWeave Q1 2026 &middot; [D] Analyst Vinh/Benzinga &middot; [3] Amnesty International DRC &middot; [17] TSMC Q1 2025 &middot; [18] Nvidia FY2025 &middot; ASM = artisanal &amp; small-scale mining</div>
+</div>
+
+<!-- SHEET -->
+<div class="sh">
+  <div class="to">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <span class="tn3">blackwell_gb200_nvl72_true_cost_v8.xlsx</span>
+    <div class="tabs">
+      <button class="tab active" onclick="sw('materials',this)">Materials</button>
+      <button class="tab" onclick="sw('carbon',this)">Carbon</button>
+      <button class="tab" onclick="sw('pl',this)">P&amp;L</button>
+      <button class="tab" onclick="sw('caveats',this)">Caveats</button>
+    </div>
+  </div>
+
+  <!-- MATERIALS -->
+  <div id="tab-materials" class="tp active">
+    <div class="fbar"><span class="cr">A1</span><span><span class="fx">fx</span>=SUM(materials) &middot; GB200 NVL72: 72&times;B200 + 36&times;Grace + NVLink + liquid cooling &middot; elemental proxy: A100 ICP-OES Falk et al. 2026 [P]</span></div>
+    <div class="chr"><div class="ch">#</div><div class="ch left">Material / origin</div><div class="ch">Est. mass</div><div class="ch">% rack</div><div class="ch">Est. cost</div><div class="ch">Confidence</div></div>
+
+    <div class="sec" style="animation-delay:.04s"><div class="sn">&mdash;</div><div class="sl">&#9635;&nbsp; Structural &mdash; rack frame, trays, power shelves, CDU enclosure</div></div>
+    <div class="row hk" style="animation-delay:.06s"><div class="cell rn">2</div><div class="cell chl"><span class="chip" style="background:#e6e4de;color:#5a5848">Fe</span>Steel &mdash; chassis, 18 compute tray frames, rack rails, power shelves</div><div class="cell r">~520 kg</div><div class="cell r">38%</div><div class="cell r">~$4,500</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="animation-delay:.08s"><div class="cell rn">3</div><div class="cell"><span class="chip" style="background:#dceaf8;color:#0f3d6e">Al</span>Aluminium &mdash; cold plates, liquid cooling manifolds, heatsink frames</div><div class="cell r">~290 kg</div><div class="cell r">21%</div><div class="cell r">~$800</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="animation-delay:.10s"><div class="cell rn">4</div><div class="cell"><span class="chip" style="background:#e8f0e6;color:#2a5438">~</span>Coolant &amp; thermal interface &mdash; liquid loop, CDU fluid, thermal paste</div><div class="cell r">~180 kg</div><div class="cell r">13%</div><div class="cell r">~$1,200</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="animation-delay:.12s"><div class="cell rn">5</div><div class="cell"><span class="chip" style="background:#f0ede6;color:#5a4a38">&#11041;</span>PCB substrate &mdash; FR4 fibreglass, 18 compute trays + 9 NVLink switch trays</div><div class="cell r">~160 kg</div><div class="cell r">12%</div><div class="cell r">~$4,000</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="sub" style="animation-delay:.14s"><div class="cell rn"></div><div class="cell">STRUCTURAL SUBTOTAL</div><div class="cell r">~1,150 kg</div><div class="cell r">84%</div><div class="cell r">~$10,500</div><div class="cell"></div></div>
+
+    <div class="sec" style="animation-delay:.16s"><div class="sn">&mdash;</div><div class="sl">&#9678;&nbsp; Conductors &mdash; A100 ICP-OES &times;72 GPU proxy [P] &middot; Blackwell unadjusted</div></div>
+    <div class="row pr hk" style="animation-delay:.18s"><div class="cell rn">7</div><div class="cell chl"><span class="chip" style="background:#fdf0da;color:#7a4800">Cu</span>Copper &mdash; 1,374 g/GPU measured (A100) &times;72 + NVLink busbars + power rails<span class="tag p">ICP-OES A100</span></div><div class="cell r">~160 kg</div><div class="cell r">11.8%</div><div class="cell r">~$1,600</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row pr" style="animation-delay:.20s"><div class="cell rn">8</div><div class="cell"><span class="chip" style="background:#f0f0e4;color:#4a4a28">Sn</span>Tin &mdash; 20.3 g/GPU measured (A100) &times;72 + NVLink switch trays<span class="tag p">ICP-OES A100</span></div><div class="cell r">~2.5 kg</div><div class="cell r">0.18%</div><div class="cell r">~$56</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="sub" style="animation-delay:.22s"><div class="cell rn"></div><div class="cell">CONDUCTORS SUBTOTAL &middot; A100 proxy scaled &times;72</div><div class="cell r">~163 kg</div><div class="cell r">12%</div><div class="cell r">~$1,656</div><div class="cell"></div></div>
+
+    <div class="sec" style="animation-delay:.24s"><div class="sn">&mdash;</div><div class="sl">&#9672;&nbsp; Compute silicon &mdash; 72&times; B200 + 36&times; Grace + NVLink ASICs + HBM3e stacks</div></div>
+    <div class="row hk" style="animation-delay:.26s"><div class="cell rn">10</div><div class="cell chl"><span class="chip" style="background:#e4eef8;color:#0c3d6e">Si</span>Silicon &mdash; 72&times; B200 GPU die, 36&times; Grace CPU die, HBM3e stacks, NVLink ASICs<span class="tag k">KEY</span></div><div class="cell r">~50 kg est.</div><div class="cell r">3.7%</div><div class="cell r">~$1.5&ndash;2M</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="sub" style="animation-delay:.28s"><div class="cell rn"></div><div class="cell">COMPUTE SUBTOTAL &middot; B200 unit cost undisclosed by Nvidia</div><div class="cell r">~50 kg</div><div class="cell r">3.7%</div><div class="cell r">~$1.5&ndash;2M</div><div class="cell"></div></div>
+
+    <div class="sec" style="background:#2a0808;border-color:#4a1010;animation-delay:.30s"><div class="sn" style="color:#6a3333;border-color:#4a1010">&mdash;</div><div class="sl" style="color:#e8a090">&#9888;&nbsp; Contested extraction &mdash; A100 ICP-OES: 93% of GPU mass hazardous [P] &middot; scaled &times;72 GPUs &middot; Blackwell values unmeasured</div></div>
+    <div class="row cx" style="animation-delay:.32s"><div class="cell rn">12</div><div class="cell"><span class="chip" style="background:#fde0de;color:#9a2018">Co</span>Cobalt &mdash; 0.0165 g/GPU (A100) &times;72 = ~1.2 g min. &middot; DRC artisanal mines<span class="tag cx">HAZARDOUS</span><span class="tag cx">CONTESTED</span></div><div class="cell r neg">~1.2 g</div><div class="cell r neg">trace</div><div class="cell r">~$0.07</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row cx" style="animation-delay:.34s"><div class="cell rn">13</div><div class="cell"><span class="chip" style="background:#fdf6da;color:#7a5000">Au</span>Gold &mdash; 0.0426 g/GPU (A100) &times;72 = ~3.1 g min. &middot; bond wire connections<span class="tag cx">CONTESTED</span></div><div class="cell r neg">~3.1 g</div><div class="cell r neg">trace</div><div class="cell r">~$240</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row cx" style="animation-delay:.36s"><div class="cell rn">14</div><div class="cell"><span class="chip" style="background:#f4f0fc;color:#4a3aa8">RE</span>Rare earths &mdash; Er, Nd, Dy &middot; Bayan Obo (Inner Mongolia) + NVLink magnet assemblies<span class="tag cx">CONTESTED</span></div><div class="cell r neg">~20 g</div><div class="cell r neg">trace</div><div class="cell r">~$30</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row cx" style="animation-delay:.38s"><div class="cell rn">15</div><div class="cell"><span class="chip" style="background:#e6f4e6;color:#1e5020">Hf</span>Hafnium &mdash; high-k gate dielectric &middot; 72 B200 + 36 Grace dies at 3&ndash;5nm node<span class="tag cx">CONTESTED</span></div><div class="cell r neg">trace</div><div class="cell r neg">trace</div><div class="cell r">est.</div><div class="cell c"><span class="ct ctu">unknown</span></div></div>
+    <div class="row cx" style="animation-delay:.40s"><div class="cell rn">16</div><div class="cell"><span class="chip" style="background:#fdf0e0;color:#7a3800">Ag</span>Silver &mdash; 0.553 g/GPU (A100) &times;72 = ~40 g min. &middot; contact surfaces<span class="tag cx">CONTESTED</span></div><div class="cell r neg">~40 g</div><div class="cell r neg">trace</div><div class="cell r">~$35</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="sub" style="background:#fae5e3;border-color:#e8b0a8;animation-delay:.42s"><div class="cell rn"></div><div class="cell neg">CONTESTED / HAZARDOUS SUBTOTAL &middot; A100 proxy &times;72 &middot; Blackwell values unknown</div><div class="cell r neg">&gt;65 g</div><div class="cell r neg">trace</div><div class="cell r neg">~$305</div><div class="cell"></div></div>
+    <div class="gt" style="animation-delay:.44s"><div class="cell rn" style="background:#0e0e0a;color:#222;border-right:1px solid #333"></div><div class="cell">TOTAL RACK &middot; GB200 NVL72 &middot; 72&times;B200 + 36&times;Grace + NVLink + liquid cooling</div><div class="cell r pos">~1,360 kg</div><div class="cell r pos">100%</div><div class="cell r warn">~$1.5&ndash;2M est.</div><div class="cell"></div></div>
+
+    <div class="ed" style="margin:0">
+      <div class="pull">Steel is 38% of this rack by weight. Silicon is 3.7%. The cobalt — measured at 0.0165 g per A100 GPU — is a rounding error. And yet it comes from the most contested supply chain on the planet.</div>
+      <p>Where each element sits in the value chain maps almost exactly to how little the people who extract it are paid and how little legal protection they have. Artisanal cobalt miners in the DRC earn $1–3/day. Nvidia earns a 75% gross margin. No invoice anywhere in this chain prices the hazardous mass, the radioactive tailings, or the groundwater at the mine. The B200 profile remains unmeasured in the peer-reviewed literature.</p>
+    </div>
+  </div>
+
+  <!-- CARBON -->
+  <div id="tab-carbon" class="tp">
+    <div class="fbar"><span class="cr">C1</span><span><span class="fx">fx</span>=120kW &times; 24h &times; 1.2PUE &times; 0.386kgCO&#8322;/kWh = 1,334 kg/day &middot; range 1,334&ndash;1,556 (PUE 1.2&ndash;1.4) &middot; 2yr = ~974k&ndash;1.14M kg CO&#8322;e</span></div>
+    <div class="sg">
+      <div class="stat peer" style="animation-delay:.04s"><div class="stl">Embodied CO&#8322;e</div><div class="stv">20.5–60k kg</div><div class="sts">PCF lb + full-rack modelled</div><div class="stc m">medium-low [L]</div></div>
+      <div class="stat peer" style="animation-delay:.055s"><div class="stl">GPU layer — confirmed</div><div class="stv">20,466 kg</div><div class="sts">9&times; HGX B200 PCF &times; 2,274 kg</div><div class="stc h">high confidence [L]</div></div>
+      <div class="stat ws" style="animation-delay:.07s"><div class="stl">Operational CO&#8322;e (2yr)</div><div class="stv" style="color:#8f6000">~974k kg</div><div class="sts">Grid power, PUE 1.2</div><div class="stc m">medium confidence</div></div>
+      <div class="stat cr" style="animation-delay:.10s"><div class="stl">Lifetime multiplier</div><div class="stv" style="color:#b02a1e">16&ndash;30&times;</div><div class="sts">Operational &divide; embodied</div><div class="stc m">medium confidence</div></div>
+      <div class="stat peer" style="animation-delay:.13s"><div class="stl">GPU lifespan</div><div class="stv">2.8 yrs</div><div class="sts">Empirical, 18,688 GPUs [11]</div><div class="stc h">high confidence</div></div>
+      <div class="stat" style="animation-delay:.16s"><div class="stl">Crossover day</div><div class="stv">Day 15&ndash;45</div><div class="sts">PCF lower bound to full-rack est.</div><div class="stc m">medium confidence</div></div>
+      <div class="stat ws" style="animation-delay:.19s"><div class="stl">Unbooked carbon @$50/t</div><div class="stv" style="color:#8f6000">~$48,700</div><div class="sts">2yr life &middot; no invoice exists</div><div class="stc m">medium confidence</div></div>
+    </div>
+
+    <!-- HUMAN SCALE TRANSLATIONS -->
+    <div style="margin:0 0 2px;background:#0e0d0a;border-top:1px solid #333">
+
+      <!-- DAILY -->
+      <div style="padding:14px 16px 10px;border-bottom:1px solid #222">
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:12px;font-family:'IBM Plex Sans',sans-serif">Every single day — 1,334 kg of CO&#8322;</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px">
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#127828;</div>
+            <div style="font-size:22px;font-weight:600;color:#ffe033;font-family:'IBM Plex Mono',monospace;line-height:1">~300</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">beef burgers<br><span style="font-size:10px;color:#777">(~4.5 kg CO&#8322; each incl. beef, bread, cooking)</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#9992;&#65039;</div>
+            <div style="font-size:22px;font-weight:600;color:#ffe033;font-family:'IBM Plex Mono',monospace;line-height:1">1.3</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">London &rarr; New York<br><span style="font-size:10px;color:#777">return flights (990 kg each)</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#128664;</div>
+            <div style="font-size:22px;font-weight:600;color:#ffe033;font-family:'IBM Plex Mono',monospace;line-height:1">5,379 km</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">in a petrol car<br><span style="font-size:10px;color:#777">London to Dubai and back</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#128241;</div>
+            <div style="font-size:22px;font-weight:600;color:#ffe033;font-family:'IBM Plex Mono',monospace;line-height:1">155,000</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">smartphone charges<br><span style="font-size:10px;color:#777">(8.6 g CO&#8322; each)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEARLY -->
+      <div style="padding:14px 16px 10px;border-bottom:1px solid #222">
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:12px;font-family:'IBM Plex Sans',sans-serif">Every year — 487,310 kg of CO&#8322;</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px">
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#127757;</div>
+            <div style="font-size:22px;font-weight:600;color:#ff8c40;font-family:'IBM Plex Mono',monospace;line-height:1">34</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">US residents&rsquo; entire<br>annual carbon footprint<br><span style="font-size:10px;color:#777">(US fossil CO&#8322; avg 13,800 kg/person/yr &mdash; Statista/IEA 2023)</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#127795;</div>
+            <div style="font-size:22px;font-weight:600;color:#ff8c40;font-family:'IBM Plex Mono',monospace;line-height:1">23,186</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">trees absorbing CO&#8322;<br>for a full year<br><span style="font-size:10px;color:#777">(each tree absorbs ~21 kg/yr)</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#9992;&#65039;</div>
+            <div style="font-size:22px;font-weight:600;color:#ff8c40;font-family:'IBM Plex Mono',monospace;line-height:1">101</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">London &rarr; New York<br>return flights<br><span style="font-size:10px;color:#777">(4,800 kg CO&#8322; each)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIFETIME -->
+      <div style="padding:14px 16px 14px">
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:12px;font-family:'IBM Plex Sans',sans-serif">Full 2-year lifetime — 974 tonnes of CO&#8322; — what does that look like?</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px">
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#128101;</div>
+            <div style="font-size:22px;font-weight:600;color:#f06060;font-family:'IBM Plex Mono',monospace;line-height:1">68</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">US residents&rsquo; entire<br>annual carbon footprint<br><span style="font-size:10px;color:#777">(14,400 kg/person/yr avg &mdash; Our World in Data 2023)</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#127944;</div>
+            <div style="font-size:22px;font-weight:600;color:#f06060;font-family:'IBM Plex Mono',monospace;line-height:1">198</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">Olympic swimming pools<br>of CO&#8322; gas<br><span style="font-size:10px;color:#777">(that&rsquo;s how much space it takes up)</span></div>
+          </div>
+          <div style="background:#1a1908;padding:12px 14px;border-radius:1px">
+            <div style="font-size:28px;margin-bottom:4px">&#127795;</div>
+            <div style="font-size:22px;font-weight:600;color:#f06060;font-family:'IBM Plex Mono',monospace;line-height:1">46,381</div>
+            <div style="font-size:12px;color:#ccc;margin-top:5px;font-family:'IBM Plex Sans',sans-serif;line-height:1.4">trees absorbing CO&#8322;<br>for a full year to offset it<br><span style="font-size:10px;color:#777">that&rsquo;s a forest of 46,000 trees</span></div>
+          </div>
+        </div>
+
+        <!-- CROSSOVER CALLOUT -->
+        <div style="margin-top:10px;background:#2a1a00;border-left:4px solid #ffe033;padding:12px 14px;border-radius:1px">
+          <div style="font-size:13px;font-weight:600;color:#ffe033;font-family:'IBM Plex Sans',sans-serif;margin-bottom:5px">&#9201;&nbsp; The crossover — Day 15</div>
+          <div style="font-size:12px;color:#ddd;font-family:'IBM Plex Sans',sans-serif;line-height:1.7">
+            Making this rack — all the mining, shipping, and manufacturing — produces about <strong style="color:#fff">20,466 kg of CO&#8322;</strong> (Nvidia&rsquo;s own HGX B200 PCF figure &times;9 for the GPU layer).<br>
+            Running it produces <strong style="color:#ffe033">1,334 kg every single day</strong>.<br>
+            By <strong style="color:#ffe033">Day 15</strong>, the electricity it has used has already released more carbon than it took to build the whole machine.<br>
+            <span style="color:#aaa;font-size:11px">Every day after that: the machine&rsquo;s existence adds more carbon than making another one would.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:4px 14px 4px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-family:'IBM Plex Sans',sans-serif">PUE uncertainty range</div>
+    <div class="rr"><span class="rl">kWh / day</span><div style="flex:1"><div class="rt"><div class="rf" style="width:80%" data-val="3,456&ndash;4,032"></div></div><div class="rv"><span>3,456 kWh (PUE 1.2)</span><span>4,032 kWh (PUE 1.4)</span></div></div></div>
+    <div class="rr"><span class="rl">kg CO&#8322; / day</span><div style="flex:1"><div class="rt"><div class="rf" style="width:80%" data-val="1,334&ndash;1,556 kg"></div></div><div class="rv"><span>1,334 kg (PUE 1.2)</span><span>1,556 kg (PUE 1.4)</span></div></div></div>
+    <div class="rr"><span class="rl">2yr lifetime CO&#8322;</span><div style="flex:1"><div class="rt"><div class="rf" style="width:75%" data-val="974k&ndash;1.14M kg"></div></div><div class="rv"><span>~974,000 kg</span><span>~1,136,000 kg</span></div></div></div>
+    <div class="cbw" style="margin-top:12px">
+      <div class="cbs">Cumulative CO&#8322;e &mdash; embodied vs. operational over 2-year rack life</div>
+      <div class="cbr"><div class="cbe" style="width:4%"></div><div class="cbo">OPERATIONAL &mdash; ~974,000 kg (97% of lifetime total)</div></div>
+      <div class="cbl"><span><span class="sw" style="background:#8a8880"></span>Embodied ~20.5k&ndash;60k kg (2&ndash;6%) &middot; PCF lb: 20,466 kg [L]</span><span><span class="sw" style="background:#b87a08"></span>Operational ~974k&ndash;1.14M kg (97%)</span></div>
+    </div>
+    <div class="xo"><strong>Crossover arrives within 15&ndash;45 days depending on embodied carbon assumption.</strong> Nvidia's own HGX B200 PCF (ISO 14067, reviewed by WSP) gives 2,274 kg CO&#8322;e per 8-GPU baseboard &mdash; 9&times; for 72 GPUs = 20,466 kg confirmed lower bound. At 1,334 kg/day that's Day 15. Add Grace CPUs, NVLink trays, rack structure, and CDU (~32,000&ndash;60,000 kg full rack) and crossover is Day 24&ndash;45. At 1,334 kg/day, one GB200 NVL72 rack emits what ten 8&times;H100 DGX systems would. The crossover arithmetic is robust across the full PUE uncertainty range. <span class="src">[P,10,11]</span></div>
+    <div class="sec" style="border-top:none;opacity:1;animation:none"><div class="sn">&mdash;</div><div class="sl">&#9678;&nbsp; Carbon by phase</div></div>
+    <div class="chr" style="position:static"><div class="ch">#</div><div class="ch left">Phase</div><div class="ch">kg CO&#8322;e</div><div class="ch">% total</div><div class="ch">Timing</div><div class="ch">Confidence</div></div>
+    <div class="row" style="animation-delay:.22s"><div class="cell rn">2</div><div class="cell">Mining &amp; refining &mdash; 72 GPU proxy + Grace CPUs + NVLink</div><div class="cell r">~20,000</div><div class="cell r">2.0%</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row pr" style="animation-delay:.22s"><div class="cell rn">2b</div><div class="cell">HGX B200 PCF (Nvidia/WSP, ISO 14067) &mdash; 8-GPU baseboard: 2,274 kg CO&#8322;e cradle-to-gate &middot; 9&times; = <strong>20,466 kg confirmed GPU-layer lower bound</strong><span class="tag p">NVIDIA PCF</span></div><div class="cell r pos">20,466</div><div class="cell r pos">lb only</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct cth">high</span></div></div>
+    <div class="row pr" style="animation-delay:.235s"><div class="cell rn">2c</div><div class="cell">HGX B200 PCF breakdown: HBM3e memory 49% (1,123 kg), ICs 28% (643 kg), thermal 12% (267 kg) &mdash; per baseboard [L]</div><div class="cell r dim">see left</div><div class="cell r dim">&mdash;</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct cth">high</span></div></div>
+    <div class="row pr" style="animation-delay:.24s"><div class="cell rn">3</div><div class="cell">Semiconductor fab &mdash; Blackwell IC: Scope 2 = 59%, Scope 3 = 30%, Scope 1 = 12% of mfg CO&#8322;e [J]<span class="tag p">TECHINSIGHTS</span></div><div class="cell r">~16,000</div><div class="cell r">1.6%</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row pr" style="animation-delay:.245s"><div class="cell rn">3b</div><div class="cell">Manufacturing location note &mdash; Scope 2 (grid electricity) is the single biggest lever; TSMC Taiwan grid vs US/Korea fab = very different CO&#8322;e [J]</div><div class="cell r dim">varies</div><div class="cell r dim">&mdash;</div><div class="cell r dim">location-dependent</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="animation-delay:.26s"><div class="cell rn">4a</div><div class="cell">Ocean freight &mdash; Taiwan &rarr; US East Coast &middot; 1.36t &middot; ~12,000 km</div><div class="cell r">~700</div><div class="cell r">0.07%</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="animation-delay:.27s"><div class="cell rn">4b</div><div class="cell">Air freight &mdash; GPU dies Taiwan &rarr; packaging (high-value, time-sensitive)</div><div class="cell r">~400</div><div class="cell r">0.04%</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="animation-delay:.28s"><div class="cell rn">4c</div><div class="cell">Domestic trucking &mdash; port &rarr; data center &middot; multi-state &middot; oversized load</div><div class="cell r">~350</div><div class="cell r">0.04%</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="animation-delay:.29s"><div class="cell rn">4d</div><div class="cell">Assembly ops &mdash; Supermicro/ODM facility, test burn-in energy</div><div class="cell r">~500</div><div class="cell r">0.05%</div><div class="cell r dim">one-time</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row hk" style="animation-delay:.31s"><div class="cell rn">5</div><div class="cell chl">Grid power &mdash; 120 kW IT load (compute + NVLink + Grace)</div><div class="cell r">~562,000</div><div class="cell r wv">56.0%</div><div class="cell r wv">~774 kg/day</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="animation-delay:.33s"><div class="cell rn">6</div><div class="cell">Grid power &mdash; liquid cooling overhead (PUE 1.2 = +20% above IT load)</div><div class="cell r">~112,000</div><div class="cell r wv">11.2%</div><div class="cell r wv">~154 kg/day</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="animation-delay:.35s"><div class="cell rn">7</div><div class="cell">Grid power &mdash; CDU, power delivery, networking infrastructure</div><div class="cell r">~259,000</div><div class="cell r wv">25.8%</div><div class="cell r wv">~356 kg/day</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="gt"><div class="cell rn" style="background:#0e0e0a;color:#222;border-right:1px solid #333"></div><div class="cell">TOTAL LIFETIME CO&#8322;e &mdash; 2 YEARS &middot; PUE 1.2</div><div class="cell r pos">~974,000 kg</div><div class="cell r pos">100%</div><div class="cell r warn">~1,334 kg/day</div><div class="cell"></div></div>
+    <div class="row" style="background:#f0f4ff;opacity:1;animation:none"><div class="cell rn" style="background:#d8e8f8;color:#0f3d6e;font-size:9px;font-family:'IBM Plex Sans',sans-serif">&#9432;</div><div class="cell" style="font-size:11px;color:#18170f;line-height:1.6;font-family:'IBM Plex Sans',sans-serif"><strong style="color:#0f3d6e">Nvidia counter-claim [K]:</strong> &ldquo;25&times; greater performance per watt vs prior generation&rdquo; &amp; &ldquo;50&times; more energy efficiency per token (Blackwell Ultra).&rdquo; These per-token efficiency gains are real. But GB200 NVL72 draws ~120 kW vs H100&rsquo;s 10.2 kW &mdash; ~10&times; more absolute power per rack. More efficient per inference &ne; less total power. Jevons&rsquo; Paradox: efficiency lowers cost-per-token, expanding demand, expanding total deployment. [K, C-09]</div><div class="cell r dim" style="font-size:10px;font-family:'IBM Plex Sans',sans-serif;color:#0f3d6e">vendor claim<br><span class="ct ctl">unverified</span></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+  </div>
+
+  <!-- P&L -->
+  <div id="tab-pl" class="tp">
+    <div class="fbar"><span class="cr">E1</span><span><span class="fx">fx</span>=gross_revenue &minus; opex &minus; debt_service &middot; reserved 3yr contract $3.30&ndash;3.50/GPU-hr [A] &middot; rack ASP ~$1.5&ndash;2M [D] &middot; 2.8yr lifespan [11]</span></div>
+
+    <div style="background:#f0f4ff;border:1px solid #b0cce8;border-radius:2px;padding:12px 14px;margin:0 0 2px;font-family:'IBM Plex Sans',sans-serif">
+      <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#0f3d6e;font-weight:600;margin-bottom:6px">&#9432;&nbsp; Market structure &mdash; reserved contracts dominate; spot is a small slice</div>
+      <div style="font-size:11.5px;color:#18170f;line-height:1.7">
+        Reserved 3-year <strong>take-or-pay contracts at $3.30&ndash;3.50/GPU-hr</strong> are the dominant commercial structure for GB200 capacity [A]. Customers commit to pay whether they use the capacity or not — providers are insulated; customers bear utilisation risk. CoreWeave&rsquo;s $14.2B Meta deal and $22.4B OpenAI commitment are reserved contracts [B]. On-demand spot pricing ($10.50&ndash;$27/hr) exists for uncommitted capacity but carries full Rubin obsolescence risk when the next generation arrives [E, G].
+      </div>
+    </div>
+
+    <div class="sec" style="opacity:1;animation:none"><div class="sn">&mdash;</div><div class="sl">&#9678;&nbsp; Daily P&amp;L &mdash; reserved contract model &middot; <span class="ct ctm">medium confidence</span></div></div>
+    <div class="pr2 phd" style="opacity:1;animation:none"><div class="pc rn">#</div><div class="pc">Line item</div><div class="pc">Per day</div></div>
+    <div class="pr2" style="animation-delay:.04s"><div class="pc rn">2L</div><div class="pc">Revenue &mdash; reserved low: $3.30/GPU-hr &times; 72 &times; 95% util &times; 24h <span class="src">[A]</span></div><div class="pc pos">+$5,417</div></div>
+    <div class="pr2" style="animation-delay:.05s"><div class="pc rn">2H</div><div class="pc">Revenue &mdash; reserved high: $3.50/GPU-hr &times; 72 &times; 95% util &times; 24h <span class="src">[A]</span></div><div class="pc pos">+$5,746</div></div>
+    <div class="pr2" style="background:#f4f6ff;animation-delay:.06s"><div class="pc rn" style="background:#dde4f8;color:#3a4aaa;font-size:8.5px;font-family:'IBM Plex Sans',sans-serif">spot ref</div><div class="pc" style="font-size:11px;color:#3a3060;font-family:'IBM Plex Sans',sans-serif">Spot on-demand: $10.50/GPU-hr &times; 72 GPUs &times; 70% util &times; 24h = $12,701/day gross. Higher but uncommitted — bears full obsolescence risk when Rubin arrives [E, G].</div><div class="pc" style="color:#3a3060;font-family:'IBM Plex Mono',monospace">+$12,701</div></div>
+    <div class="pr2" style="animation-delay:.08s"><div class="pc rn">3</div><div class="pc">&minus; Electricity &mdash; 3,456 kWh/day @ $0.10/kWh <span class="src">[15]</span></div><div class="pc neg">&minus;$346</div></div>
+    <div class="pr2" style="animation-delay:.10s"><div class="pc rn">4</div><div class="pc">&minus; Liquid cooling / CDU operations</div><div class="pc neg">&minus;$500</div></div>
+    <div class="pr2" style="animation-delay:.12s"><div class="pc rn">5</div><div class="pc">&minus; Colocation &mdash; power density premium (120 kW racks require specialist facilities) <span class="src">[16]</span></div><div class="pc neg">&minus;$800</div></div>
+    <div class="pr2" style="animation-delay:.14s"><div class="pc rn">6</div><div class="pc">&minus; Network egress + NVLink fabric operations</div><div class="pc neg">&minus;$200</div></div>
+    <div class="pr2" style="animation-delay:.16s"><div class="pc rn">7</div><div class="pc">&minus; Staff &amp; ops overhead (amortized per rack)</div><div class="pc neg">&minus;$300</div></div>
+    <div class="pr2" style="animation-delay:.17s"><div class="pc rn">7D</div><div class="pc">&minus; Debt service &mdash; ~9.3% on $1.5M rack (CoreWeave SOFR+4% facility) <span class="src">[B]</span></div><div class="pc neg">&minus;$382</div></div>
+    <div class="pr2" style="background:#f0faf4;animation-delay:.20s"><div class="pc rn" style="background:#d4edd8;color:#1e5c3a;font-weight:600">8L</div><div class="pc" style="font-weight:500;color:#18170f">= Net profit/day &mdash; reserved low ($3.30/hr)</div><div class="pc pos" style="font-weight:500">~$2,889/day &nbsp;<span style="font-size:10px;color:var(--mu);font-weight:400">(53% margin)</span></div></div>
+    <div class="pr2" style="background:#e8f8f0;animation-delay:.21s"><div class="pc rn" style="background:#c4e8cc;color:#1e5c3a;font-weight:600">8H</div><div class="pc" style="font-weight:500;color:#18170f">= Net profit/day &mdash; reserved high ($3.50/hr)</div><div class="pc pos" style="font-weight:500">~$3,217/day &nbsp;<span style="font-size:10px;color:var(--mu);font-weight:400">(56% margin)</span></div></div>
+    <div class="pr2" style="animation-delay:.23s"><div class="pc rn">9</div><div class="pc">Hardware cost &mdash; analyst ASP $1.5M&ndash;$2M per rack [D]</div><div class="pc neg">$1.5&ndash;2M</div></div>
+    <div class="pr2 ptot" style="opacity:1;animation:none"><div class="pc rn">10</div><div class="pc">Payback &mdash; $1.5M &divide; $2,889&ndash;3,217/day</div><div class="pc" style="color:#f0d060">459&ndash;519 days (15&ndash;17 months)</div></div>
+    <div class="pr2 ptot" style="opacity:1;animation:none"><div class="pc rn">11</div><div class="pc">Payback &mdash; $2.0M &divide; $2,889&ndash;3,217/day</div><div class="pc" style="color:#f0d060">622&ndash;693 days (21&ndash;23 months)</div></div>
+
+    <div class="sec" style="opacity:1;animation:none"><div class="sn">&mdash;</div><div class="sl">&#9201;&nbsp; Profit window &mdash; lifespan 2.8yr = 1,022 days [11] &middot; adjusted for deployment lag [H,I]</div></div>
+    <div style="background:#fff8e0;border:1px solid #d8b840;border-radius:2px;padding:12px 14px;margin:2px 0;font-family:'IBM Plex Sans',sans-serif">
+      <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#7a5800;font-weight:600;margin-bottom:6px">&#9888;&nbsp; Deployment lag &mdash; real cost not in the model</div>
+      <div style="font-size:11.5px;color:#18170f;line-height:1.7"><strong>Deployment lag is real and unmodelled.</strong> The Information (May 2026) reports OpenAI, Oracle, and Meta had a hard time getting GB200 NVL72 up and running, and are still in early phases of rollout. Early 2025 customers including Microsoft and Amazon found chips not working properly in testing &mdash; some reduced orders [H]. An Nvidia internal email described validation requiring extensive on-site support and documentation rewriting [I]. During deployment lag the rack earns nothing but still incurs debt service (~$382/day) and colocation costs (~$800/day).</div>
+    </div>
+    <div class="pw">
+      <div class="pwc"><div class="pwl">$1.5M rack &middot; $3.30/hr &middot; 1mo lag</div><div class="pwr"><div class="pwv warn">Deploy lag: 30 days idle</div><div class="pwv warn">Dead cost: ~$35k</div><div class="pwv pos">Net: ~$1.33M</div><div class="pwsub">Best case &mdash; fast deployment</div></div></div>
+      <div class="pwc"><div class="pwl">$1.5M rack &middot; $3.30/hr &middot; 3mo lag</div><div class="pwr"><div class="pwv neg">Deploy lag: 90 days idle</div><div class="pwv neg">Dead cost: ~$106k</div><div class="pwv warn">Net: ~$1.09M</div><div class="pwsub">Realistic per The Information [H]</div></div></div>
+      <div class="pwc"><div class="pwl">$2.0M rack &middot; $3.30/hr &middot; 3mo lag</div><div class="pwr"><div class="pwv neg">Deploy lag: 90 days idle</div><div class="pwv neg">Dead cost: ~$106k</div><div class="pwv warn">Net: ~$586k</div><div class="pwsub">Thin &mdash; any further delay painful</div></div></div>
+      <div class="pwc"><div class="pwl">CoreWeave actual Q1 2026</div><div class="pwr"><div class="pwv">Revenue: +112% YoY</div><div class="pwv neg">Op. margin: 1%</div><div class="pwv">Backlog: $99.4B</div><div class="pwsub">CapEx burden compresses net [C]</div></div></div>
+    </div>
+
+    <div class="sec" style="opacity:1;animation:none"><div class="sn">&mdash;</div><div class="sl" style="color:#e8a090">&#9888;&nbsp; Obsolescence &mdash; the H100 precedent</div></div>
+    <div style="background:#fdf1f0;border:1px solid #e8b0a8;border-radius:2px;padding:12px 14px;margin:2px 0;font-family:'IBM Plex Sans',sans-serif">
+      <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#b02a1e;font-weight:600;margin-bottom:6px">&#9651;&nbsp; Obsolescence risk &mdash; the H100 precedent</div>
+      <div style="font-size:11.5px;color:#18170f;line-height:1.7"><strong style="color:#b02a1e">H100 spot rates fell 70%</strong> when Blackwell shipped at scale &mdash; from $8&ndash;10/hr to $2.85&ndash;3.50/hr now [F]. Jensen Huang at GTC 2025: &ldquo;When Blackwell starts shipping in volume, you couldn&rsquo;t give Hoppers away.&rdquo; <strong>Rubin ships 2H 2026 [G].</strong> Reserved take-or-pay contracts insulate the cloud provider &mdash; the customer bears the risk of paying for compute that is no longer state-of-the-art. CoreWeave&rsquo;s $99.4B contracted backlog is largely locked; spot capacity is not.</div>
+    </div>
+
+    <div class="sec" style="opacity:1;animation:none"><div class="sn">&mdash;</div><div class="sl">&#9678;&nbsp; Margin by layer &mdash; from mine to model</div></div>
+    <div class="chr" style="position:static"><div class="ch">#</div><div class="ch left">Entity</div><div class="ch">Role</div><div class="ch">Gross margin</div><div class="ch">Revenue scale</div><div class="ch">Source</div></div>
+    <div class="row" style="animation-delay:.26s"><div class="cell rn">1</div><div class="cell">Miners &mdash; DRC, Mongolia, Indonesia</div><div class="cell c dim" style="font-size:10px">Raw extraction</div><div class="cell r neg">5&ndash;15%</div><div class="cell r dim">$bn commodity</div><div class="cell c dim">[5]</div></div>
+    <div class="row" style="animation-delay:.28s"><div class="cell rn">2</div><div class="cell">TSMC</div><div class="cell c dim" style="font-size:10px">Fab / wafers</div><div class="cell r pos">~53%</div><div class="cell r dim">$90B/yr</div><div class="cell c dim">[17]</div></div>
+    <div class="row" style="animation-delay:.30s"><div class="cell rn">3</div><div class="cell">Nvidia</div><div class="cell c dim" style="font-size:10px">Design + IP</div><div class="cell r pos">~75%</div><div class="cell r dim">$130B/yr</div><div class="cell c dim">[18]</div></div>
+    <div class="row" style="animation-delay:.32s"><div class="cell rn">4</div><div class="cell">CoreWeave &mdash; reserved contract gross</div><div class="cell c dim" style="font-size:10px">DC ops</div><div class="cell r pos">~53&ndash;56%</div><div class="cell r dim">$2.1B Q1 2026</div><div class="cell c dim">[B,C]</div></div>
+    <div class="row" style="animation-delay:.33s"><div class="cell rn">4b</div><div class="cell">CoreWeave &mdash; operating margin after CapEx</div><div class="cell c dim" style="font-size:10px">Net after build</div><div class="cell r neg">~1%</div><div class="cell r dim">Q1 2026 actual</div><div class="cell c dim">[C]</div></div>
+    <div class="row cx" style="animation-delay:.34s"><div class="cell rn">5</div><div class="cell neg">Artisanal miners &mdash; DRC cobalt (ASM)</div><div class="cell c dim" style="font-size:10px">ASM cobalt</div><div class="cell r neg">&lt;5%</div><div class="cell r neg">~$1&ndash;3/day wage</div><div class="cell c dim">[3,P]</div></div>
+
+    <div style="background:#1a0a00;border-top:2px solid #cc4400;padding:10px 14px 6px;margin:2px 0 0">
+      <div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#cc6600;font-weight:600;font-family:'IBM Plex Sans',sans-serif">&#9888;&nbsp; Unbooked externalities &mdash; costs that appear on no invoice anywhere in this supply chain</div>
+    </div>
+
+    <!-- SECTION: CARBON -->
+    <div style="background:#fff8f0;border-bottom:1px solid #e8d0b0;padding:6px 14px 4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8f5000;font-family:'IBM Plex Sans',sans-serif;font-weight:500">Climate</div>
+    <div class="row" style="background:#fffbf4;animation-delay:.36s"><div class="cell rn">&mdash;</div><div class="cell wv">Carbon @$50/t &mdash; 2yr operational ~974k kg CO&#8322;e &middot; no invoice, no regulation</div><div class="cell r wv">~$66/day</div><div class="cell r wv">~$48,700 life</div><div class="cell r wv">unbooked</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="background:#fffbf4;animation-delay:.37s"><div class="cell rn">&mdash;</div><div class="cell wv">Refrigerant HFC emissions &mdash; data centre air-side cooling uses HFCs (GWP 1,000&ndash;9,000&times; CO&#8322;) &middot; F-gas losses not in Scope 1 for many operators</div><div class="cell r wv">unpriced</div><div class="cell r wv">unpriced</div><div class="cell r wv">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#fffbf4;animation-delay:.375s"><div class="cell rn">&mdash;</div><div class="cell wv">Fab perfluorocarbons (PFCs) &mdash; CVD/etch process gases &middot; GWP 10,000&ndash;24,000&times; CO&#8322; over 100yr &middot; excluded from standard carbon accounting at TSMC and peers</div><div class="cell r wv">unpriced</div><div class="cell r wv">unpriced</div><div class="cell r wv">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+
+    <!-- SECTION: WATER & CHEMICAL -->
+    <div style="background:#f0f6ff;border-bottom:1px solid #b0c8e8;border-top:1px solid #b0c8e8;padding:6px 14px 4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#0f3d6e;font-family:'IBM Plex Sans',sans-serif;font-weight:500">Water &amp; chemical pollution</div>
+    <div class="row" style="background:#f4f8ff;animation-delay:.38s"><div class="cell rn">&mdash;</div><div class="cell" style="color:#0f3d6e">Acid mine drainage &mdash; cobalt extraction at DRC sites &middot; sulphuric acid + heavy metals leach into groundwater &middot; Lualaba River contamination documented<span class="src">[3,P]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#f4f8ff;animation-delay:.385s"><div class="cell rn">&mdash;</div><div class="cell" style="color:#0f3d6e">Fab chemical discharge &mdash; TSMC treats ~150,000t wastewater/day &middot; photoresists, HF, H&#8322;SO&#8324;, NH&#8323;, CMP slurries &middot; residual chemical load into Hsinchu aquifer<span class="src">[13]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#f4f8ff;animation-delay:.39s"><div class="cell rn">&mdash;</div><div class="cell" style="color:#0f3d6e">Fab water consumption &mdash; ~1,173 L TSMC water per B200 IC (TechInsights) &middot; ~118,000 L total for rack chips &middot; treated discharge not zero-impact<span class="src">[J]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctm">medium</span></div></div>
+    <div class="row" style="background:#f4f8ff;animation-delay:.395s"><div class="cell rn">&mdash;</div><div class="cell" style="color:#0f3d6e">Cooling fluid leaks &mdash; glycol-based CDU coolants &middot; environmentally persistent &middot; no standardised leak accounting per rack<span class="src">[I]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+
+    <!-- SECTION: AIR -->
+    <div style="background:#fff0f4;border-bottom:1px solid #e8b0c0;border-top:1px solid #e8b0c0;padding:6px 14px 4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8a0030;font-family:'IBM Plex Sans',sans-serif;font-weight:500">Air pollution</div>
+    <div class="row" style="background:#fff4f6;animation-delay:.40s"><div class="cell rn">&mdash;</div><div class="cell neg">Mining dust &amp; exhaust &mdash; open-pit PM2.5/PM10 particulates + diesel exhaust at DRC, Mongolia, Indonesia mine sites &middot; no air quality monitoring at ASM scale<span class="src">[3]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#fff4f6;animation-delay:.405s"><div class="cell rn">&mdash;</div><div class="cell neg">Copper smelter SO&#8322; &amp; arsenic &mdash; copper refining (DRC, Zambia) releases sulphur dioxide, arsenic, lead vapour &middot; documented lung disease in proximate communities<span class="src">[7]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#fff4f6;animation-delay:.41s"><div class="cell rn">&mdash;</div><div class="cell neg">Radioactive tailings dust &mdash; Bayan Obo rare earth processing &middot; thorium + uranium co-extracted with Nd, Dy, Er &middot; windblown tailings contaminate Inner Mongolia farmland<span class="src">[5]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+
+    <!-- SECTION: END OF LIFE -->
+    <div style="background:#f8f0ff;border-bottom:1px solid #c8a0e0;border-top:1px solid #c8a0e0;padding:6px 14px 4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#4a0880;font-family:'IBM Plex Sans',sans-serif;font-weight:500">End of life</div>
+    <div class="row" style="background:#faf4ff;animation-delay:.42s"><div class="cell rn">&mdash;</div><div class="cell" style="color:#4a0880">E-waste leachate &mdash; 93% of GPU mass hazardous (A100 proxy) &middot; informal recycling via acid baths &amp; open burning at Agbogbloshie (Ghana), Guiyu (China) &middot; lead, mercury, cadmium into soil and groundwater<span class="src">[P,9]</span></div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#faf4ff;animation-delay:.425s"><div class="cell rn">&mdash;</div><div class="cell" style="color:#4a0880">PFAS fire suppression &mdash; data centre decommission &amp; rack fire suppression uses per-&amp; polyfluoroalkyl substances (PFAS) &middot; &ldquo;forever chemicals&rdquo; &middot; no industry standard for end-of-life rack disposal</div><div class="cell r dim">unpriced</div><div class="cell r dim">unpriced</div><div class="cell r dim">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+
+    <!-- SECTION: LABOUR -->
+    <div style="background:#fff8e0;border-bottom:1px solid #d8b840;border-top:1px solid #d8b840;padding:6px 14px 4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#7a5800;font-family:'IBM Plex Sans',sans-serif;font-weight:500">Labour &amp; community</div>
+    <div class="row" style="background:#fffbf0;animation-delay:.44s"><div class="cell rn">&mdash;</div><div class="cell wv">DRC ASM cobalt &mdash; ~$1&ndash;3/day wage &middot; no safety equipment &middot; tunnel collapse deaths &middot; child labour documented &middot; zero legal liability upstream<span class="src">[3,P]</span></div><div class="cell r wv">unpriced</div><div class="cell r wv">unpriced</div><div class="cell r wv">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+    <div class="row" style="background:#fffbf0;animation-delay:.445s"><div class="cell rn">&mdash;</div><div class="cell wv">Community health burden &mdash; heavy metal exposure near smelters, tailings ponds &middot; no remediation cost allocated to any entity in this supply chain</div><div class="cell r wv">unpriced</div><div class="cell r wv">unpriced</div><div class="cell r wv">unbooked</div><div class="cell c"><span class="ct ctl">low</span></div></div>
+
+    <div style="background:#18170f;padding:9px 14px;font-size:10.5px;color:#f0d080;font-family:'IBM Plex Sans',sans-serif;border-top:1px solid #333;line-height:1.6">
+      <strong>None of the above appears on any invoice, earnings call, regulatory filing, or cloud pricing page.</strong> Methods to price most of these exist &mdash; carbon trading, EPA health-cost models, water pricing mechanisms, polluter-pays liability. The absence is not a measurement problem. It is a disclosure problem.
+    </div>
+  </div>
+
+  <!-- CAVEATS -->
+  <div id="tab-caveats" class="tp">
+    <div class="fbar"><span class="cr">F1</span><span><span class="fx">fx</span>=items_not_on_any_invoice() + unknown_quantities() &rarr; 10 caveats &middot; v8.0</span></div>
+    <div class="ci3" style="background:#fff0f8;border-color:#e8a0c0"><div class="cn2" style="background:#fde8f4;color:#b02a1e;border-color:#e8a0c0">C-01</div><div class="ct2"><strong>B200/GB200 elemental composition &mdash; unknown.</strong> No peer-reviewed ICP-OES or equivalent teardown of any Blackwell GPU exists as of May 2026. All elemental claims use Falk et al. 2026 A100 data as proxy. Blackwell dies are larger, packaging more complex (NVL co-packaging), and the rack includes Grace CPUs and NVLink ASICs not present in A100-era systems.<div class="cwarn">&#9888; The 93% hazardous mass figure is empirically confirmed for A100 only. It is directionally applicable to Blackwell but not measured.</div></div></div>
+    <div class="ci3" style="background:#fff0f8;border-color:#e8a0c0"><div class="cn2" style="background:#fde8f4;color:#b02a1e;border-color:#e8a0c0">C-02</div><div class="ct2"><strong>Power draw and PUE &mdash; more uncertain than modelled.</strong> Oracle confirms &ldquo;over 120 kW at peak&rdquo; but sustained draw during typical workloads may be lower. PUE 1.2 assumes efficient liquid cooling, but an Nvidia internal email (Dec 2025) described Microsoft&rsquo;s GB200 facility-level cooling as &ldquo;wasteful&rdquo; &mdash; the setup uses a second air-cooling layer on top of in-rack liquid cooling, trading water efficiency for energy use. Real-world PUE may be 1.3&ndash;1.4 at some facilities, increasing carbon by 8&ndash;17%. [I]<div class="cwarn">&#9888; Our 1.2 PUE assumption is optimistic for at least some real deployments.</div></div></div>
+    <div class="ci3" style="background:#fff0f8;border-color:#e8a0c0"><div class="cn2" style="background:#fde8f4;color:#b02a1e;border-color:#e8a0c0">C-03</div><div class="ct2"><strong>Rack ASP &mdash; sell-side estimate only.</strong> Analyst Vinh (Benzinga) estimates $1.5M&ndash;$2M per rack [D]. Nvidia hardware cost to OEMs not publicly disclosed. Our previous $3&ndash;5M estimate was likely 2&ndash;3&times; too high.</div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-04</div><div class="ct2"><strong>Reserved contract pricing &mdash; not public.</strong> $3.30&ndash;3.50/GPU-hr sourced from CloudSyntrix analysis of private cloud Blackwell contracts [A]. Actual CoreWeave contract rates are confidential. On-demand spot ($10.50&ndash;$27/hr) is observable but represents a different risk structure.</div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-05</div><div class="ct2"><strong>Legal liability gap &mdash; cobalt.</strong> No company in the cobalt supply chain is legally liable for DRC extraction or labor conditions. ASM accounts for ~20% of DRC cobalt. Nvidia&rsquo;s Responsible Minerals Policy covers disclosure, not remediation.<div class="cpeer">&#9733; Peer-reviewed: Falk et al. 2026 [P] confirms Co as hazardous in A100</div></div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-06</div><div class="ct2"><strong>Cooling water &mdash; deployment-dependent, not a fixed figure.</strong> Our ~5,000 L/day estimate may be misleading. Supermicro&rsquo;s GB200 NVL72 datasheet lists multiple CDU configurations including 250 kW, 240 kW, and 180 kW liquid-to-air solutions &mdash; some configurations require <strong>no facility water at all</strong> (closed-loop/liquid-to-air). An Nvidia internal email described Microsoft&rsquo;s GB200 cooling as &ldquo;wasteful due to the size and lack of facility water use&rdquo; &mdash; suggesting Microsoft&rsquo;s design uses more energy but less water than an evaporative design would. [I] The correct statement is: <em>cooling water varies from near-zero (closed-loop dry cooler) to thousands of litres per day (evaporative), depending entirely on facility design.</em> TSMC fab water (~1,173 L per B200 IC, ~118,000 L for the rack&rsquo;s chips) is separately accounted. [J]<div class="cwarn">&#9888; Do not cite the ~5,000 L/day figure without specifying facility cooling design. It is wrong for some deployments.</div></div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-07</div><div class="ct2"><strong>All figures are lower bounds.</strong> Falk et al. 2026 explicitly state their ICP-OES results exclude losses during refining, processing, and component manufacturing. Logistics carbon, NVLink tray footprint, and Grace CPU materials are not independently quantified.<div class="cpeer">&#9733; Peer-reviewed: Falk et al. 2026 [P]</div></div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-08</div><div class="ct2"><strong>Carbon price absent.</strong> ~974,000 kg CO&#8322;e over 2 years. At $50/tonne = ~$48,700/rack &mdash; unbilled on any invoice. No mandatory carbon price applies to US data center operations.</div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-09</div><div class="ct2"><strong>Jevons&rsquo; Paradox &mdash; Nvidia&rsquo;s own marketing confirms it.</strong> Nvidia&rsquo;s sustainability page claims GB200 NVL72 delivers &ldquo;25&times; greater performance per watt vs prior generation&rdquo; and Blackwell Ultra delivers &ldquo;50&times; more energy efficiency per token.&rdquo; [K] These per-token efficiency gains are real and measurable. But they say nothing about total power. GB200 NVL72 draws ~120 kW; the H100 DGX it replaces drew 10.2 kW. &ldquo;25&times; performance per watt&rdquo; + &ldquo;10&times; more absolute power&rdquo; = 2.5&times; more total power per rack, not less. More efficient per inference does not mean less total environmental burden &mdash; it means the ceiling for total deployment rises. Nvidia also claims AI tasks use &ldquo;100,000&times; less power than a decade ago&rdquo; with no methodology cited &mdash; this compares best-case 2024 inference per-token against 2014 training compute and is not a statement about total system power consumption. [K]<div class="cpeer">&#9733; Peer-reviewed: Falk et al. 2026 [P]; Luccioni, Strubell &amp; Crawford, ACM FAccT 2025</div><div class="csrc">Vendor source (marketing): Nvidia Sustainable Computing page, nvidia.com, accessed May 2026 [K]</div></div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-10</div><div class="ct2"><strong>Obsolescence timeline uncertain.</strong> Hyperscalers depreciate GPUs over 4&ndash;6 years for accounting purposes. Technological useful life may be 1&ndash;2 years given Nvidia&rsquo;s annual cadence [G]. H100 spot rates fell 70% within one product cycle [F]. Reserved contracts transfer this risk to the customer.</div></div>
+    <div class="ci3" style="background:var(--ppb);border-color:var(--ppc)"><div class="cn2" style="background:#dce8f8;color:#0f3d6e;border-color:var(--ppc)">C-12</div><div class="ct2"><strong style="color:#0f3d6e">Manufacturing water &mdash; upgraded from estimate to modelled figure.</strong> TechInsights (Aug 2025) applied the Murphy yield model, 90% fab utilisation, 98% package yield, and location-based Scope 2 accounting to Blackwell. Result: ~310 gallons (1,173 L) of water per Blackwell IC. Our previous figure of ~2,000 L/wafer overstated by ~41%. Full rack: ~118,000 L for IC manufacturing alone (72 B200 + 36 Grace + NVLink ASICs estimated), equivalent to 833 Americans&rsquo; daily water use. This is still IC-only &mdash; excludes packaging, assembly, cooling, and operational water. <strong>Architecture matters:</strong> Blackwell has ~20 cm&sup2; silicon vs MI300X &gt;40 cm&sup2;; produces ~20% less total CO&#8322;e in manufacturing but is ~2&times; more carbon-intensive per cm&sup2;. Scope 2 (grid electricity) = 59% of Blackwell manufacturing emissions &mdash; meaning fab location is the single largest decarbonisation lever. [J]<div class="cpeer">&#9733; Source: TechInsights, &ldquo;The Hidden Environmental Cost of Advanced AI Chips,&rdquo; Aug 2025. Modelled, not peer-reviewed &mdash; proprietary methodology.</div></div></div>
+    <div class="ci3" style="background:var(--cb)"><div class="cn2">C-11</div><div class="ct2"><strong>Deployment lag not modelled.</strong> The Information (May 2026) reports that OpenAI, Oracle, Meta, Microsoft, and Amazon all experienced significant delays getting GB200 NVL72 up and running. Early 2025 chips failed testing; customers reduced orders or reverted to Hopper. Nvidia&rsquo;s internal email on a Microsoft deployment noted validation documentation required extensive rewriting and handover processes needed &ldquo;a lot more solidification.&rdquo; Our P&L assumes revenue begins immediately. A 3-month lag on a $2M rack costs ~$106k in dead debt+colo and compresses the already thin profit window significantly. [H, I]<div class="cwarn">&#9888; Take-or-pay contracts may require customers to pay during deployment lag even if the rack is not earning. Confirms C-04: reserved rate structure needs verification.</div></div></div>
+  </div>
+</div><!-- /sheet -->
+
+<!-- AUDIT TABLE -->
+<div class="wrap" style="padding-top:14px">
+<div class="aud">
+  <div class="aud-title">What can be publicly audited &mdash; and what cannot</div>
+  <div class="aud-grid">
+    <div class="aud-hdr"></div>
+    <div class="aud-hdr">Material bill</div>
+    <div class="aud-hdr">Embodied carbon</div>
+    <div class="aud-hdr">Water burden</div>
+    <div class="aud-hdr">Hazardous mass</div>
+    <div class="aud-hdr">CoWoS footprint</div>
+    <div class="aud-hdr">End-of-life risk</div>
+
+    <div class="aud-row-lbl">Can audit publicly</div>
+    <div class="aud-cell no">&#10007; Cannot</div>
+    <div class="aud-cell no">&#10007; Cannot</div>
+    <div class="aud-cell part">&#9651; IC only [J]</div>
+    <div class="aud-cell part">&#9651; A100 only</div>
+    <div class="aud-cell no">&#10007; Cannot</div>
+    <div class="aud-cell no">&#10007; Cannot</div>
+
+    <div class="aud-row-lbl">Methods exist</div>
+    <div class="aud-cell yes">&#10003; ICP-OES</div>
+    <div class="aud-cell yes">&#10003; LCA modelling</div>
+    <div class="aud-cell yes">&#10003; Facility audits</div>
+    <div class="aud-cell yes">&#10003; ICP-OES</div>
+    <div class="aud-cell yes">&#10003; DC testbeds</div>
+    <div class="aud-cell yes">&#10003; Hardware refresh</div>
+
+    <div class="aud-row-lbl">Last peer-reviewed</div>
+    <div class="aud-cell part">A100 (2020)</div>
+    <div class="aud-cell part">Falk et al. 2026</div>
+    <div class="aud-cell part">TechInsights 2025</div>
+    <div class="aud-cell part">93% &mdash; A100</div>
+    <div class="aud-cell no">Not published</div>
+    <div class="aud-cell part">WEEE estimates</div>
+  </div>
+</div>
+
+<!-- EDITORIAL CLOSE -->
+<div class="ed">
+  <div class="pull">The gap between what we can price and what we can audit is not a data problem. It is a transparency problem.</div>
+  <p>The infrastructure of artificial intelligence is commercially visible and environmentally opaque by design. Every GPU sold is tracked to the dollar. Every kilowatt-hour is billed. The cobalt content, the water, the hazardous mass, the embodied carbon &mdash; none of these appear on any invoice, any earnings call, or any regulatory filing. The methods to measure them exist. The data does not.</p>
+  <p>This ledger is a proxy model built from what is publicly available. It is not an audit. It is an argument that an audit is overdue.</p>
+</div>
+
+<!-- FLOW SOURCES -->
+<div class="src-box">
+  <div class="src-t">Sources &amp; methodology &mdash; v8.0</div>
+  <ol><li><span class="psrc">[P] PEER-REVIEWED:</span> Falk, S. et al. &ldquo;From computation to environmental cost.&rdquo; <em>Commun. Earth Environ.</em> 7, 397 (2026). DOI: 10.1038/s43247-026-03537-5. Open Access CC BY 4.0.</li>
+    <li>[1] Supermicro H100 NVL GPU SuperServer spec; full rack ~1,360 kg. Distinct from single DGX H100 unit.</li>
+    <li>[2] Nvidia DGX H100/H200 User Guide &mdash; 8U, 130.45 kg max, 10.2 kW max. docs.nvidia.com/dgx/dgxh100-user-guide/</li>
+    <li>[3] Amnesty International &ldquo;This is What We Die For&rdquo; (2016); Nvidia Responsible Minerals Policy 2024</li>
+    <li>[4] USGS Mineral Commodity Summaries 2024 &mdash; Gold, Silver; LBMA</li>
+    <li>[5] USGS Mineral Resources Program &mdash; Rare Earth Elements</li>
+    <li>[6] USGS Mineral Commodity Summaries &mdash; Hafnium; TSMC HfO2 gate dielectric</li>
+    <li>[7] USGS Mineral Commodity Summaries 2024 &mdash; Copper; LME spot pricing</li>
+    <li>[8] USGS Mineral Commodity Summaries 2024 &mdash; Tin; ITRI supply chain</li>
+    <li>[9] European Parliament WEEE Directive 2012/19/EU; RoHS classification</li>
+    <li>[10] US EIA eGRID 2023 (0.386 kg CO2/kWh); Nvidia DGX H100 TDP 10.2 kW; PUE 1.4x Uptime Institute 2024</li>
+    <li>[11] Ostrouchov et al. (2020) &ldquo;GPU lifetimes on Titan supercomputer.&rdquo; SC20. 18,688 GPUs, 7 years, mean failure 2.8 yrs.</li>
+    <li>[12] Science Based Targets initiative; Dell Technologies PCF methodology (server hardware proxy)</li>
+    <li>[13] TSMC 2023 Sustainability Report; USGS US water use (142 L/person/day)</li>
+    <li>[14] CoreWeave pricing &mdash; GB200 on-demand: CoreWeave ~$10.50/GPU-hr (Spheron, Mar 2026). Market range $10.50&ndash;$27.04/GPU-hr, avg $20.14 (getdeploying.com, May 2026). $42/hr figure was wrong &mdash; likely misread from $68.80/hr 8&times;HGX B200 node price.</li>
+    <li>[15] US EIA Average Commercial Electricity Price 2024 (~$0.10/kWh)</li>
+    <li>[16] Uptime Institute 2024 Global Data Center Survey</li>
+    <li>[17] TSMC Q1 2025 earnings &mdash; gross margin 53.1%</li>
+    <li>[18] Nvidia FY2025 Annual Report &mdash; data center gross margin ~74.6%</li>
+    <li>[19] US EPA Social Cost of Carbon 2024 ($51/metric tonne CO2)</li>
+    <li><strong>[A]</strong> Reserved contract pricing $3.30&ndash;3.50/GPU-hr: CloudSyntrix, &ldquo;How NVIDIA Blackwell GPUs Are Transforming Cloud Costs and Revenue,&rdquo; Feb 2025.</li>
+    <li><strong>[B]</strong> CoreWeave debt SOFR+4% (~9.3%); Meta $14.2B deal; OpenAI ~$22.4B commitment: mlq.ai CoreWeave Deep Dive (citing Wedbush/Finterra &ldquo;The GPU Debt Wall,&rdquo; Feb 2026).</li>
+    <li><strong>[C]</strong> CoreWeave Q1 2026: revenue $2.1B (+112% YoY), operating margin 1% (from 17%), backlog $99.4B, CapEx $6.8B: Investing.com / HyperFRAME Research, May 2026.</li>
+    <li><strong>[D]</strong> GB200 NVL72 rack ASP $1.5M&ndash;$2M: analyst Vinh, Benzinga 2024. Sell-side estimate &mdash; Nvidia hardware cost to OEMs not publicly disclosed.</li>
+    <li><strong>[E]</strong> Spot GB200 pricing $10.50&ndash;$27.04/GPU-hr, avg $20.14: getdeploying.com, May 2026. CoreWeave on-demand ~$10.50: Spheron Network, Mar 2026.</li>
+    <li><strong>[F]</strong> H100 spot collapse 70% (from $8&ndash;10/hr to $2.85&ndash;3.50/hr): stanleylaman.com, Nov 2025. $176B hyperscaler depreciation adjustment risk through 2028.</li>
+    <li><strong>[G]</strong> Nvidia annual product cadence; Jensen Huang &ldquo;couldn&rsquo;t give Hoppers away&rdquo;; CoreWeave GB300 NVL72 deployment: Data Center Dynamics, May 2026.</li>
+    <li><strong>[A]</strong> Reserved contract pricing $3.30&ndash;3.50/GPU-hr: CloudSyntrix, &ldquo;How NVIDIA Blackwell GPUs Are Transforming Cloud Costs and Revenue,&rdquo; Feb 2025. 3-year take-or-pay structure.</li>
+    <li><strong>[B]</strong> CoreWeave SOFR+4% debt (~9.3%); Meta $14.2B deal through 2031; OpenAI ~$22.4B commitment: mlq.ai CoreWeave Deep Dive, citing Wedbush/Finterra &ldquo;The GPU Debt Wall,&rdquo; Feb 2026.</li>
+    <li><strong>[C]</strong> CoreWeave Q1 2026: revenue $2.1B (+112% YoY), operating margin 1% (from 17%), backlog $99.4B, CapEx $6.8B: Investing.com / HyperFRAME Research, May 2026.</li>
+    <li><strong>[D]</strong> GB200 NVL72 rack ASP $1.5M&ndash;$2M: analyst Vinh estimate, Benzinga 2024. Nvidia hardware cost to OEMs not publicly disclosed.</li>
+    <li><strong>[E]</strong> Spot GB200 $10.50&ndash;$27.04/GPU-hr, avg $20.14: getdeploying.com, May 2026. CoreWeave on-demand ~$10.50: Spheron Network, Mar 2026.</li>
+    <li><strong>[F]</strong> H100 spot fell 70% from $8&ndash;10/hr to $2.85&ndash;3.50/hr: stanleylaman.com, Nov 2025. $176B hyperscaler depreciation adjustment risk through 2028.</li>
+    <li><strong>[G]</strong> Nvidia annual product cadence; Jensen Huang &ldquo;couldn&rsquo;t give Hoppers away&rdquo;; CoreWeave GB300 NVL72 deployment: Data Center Dynamics, May 2026.</li>
+    <li><strong>[H]</strong> GB200 NVL72 deployment struggles: Ana Gardezi, The Information podcast, May 2026. OpenAI, Oracle, Meta, Microsoft, Amazon all experienced delays; early chips failed testing; some customers switched back to Hopper GPUs; Nvidia has no clear competitive alternative.</li>
+    <li><strong>[I]</strong> Nvidia internal email (NVIS team), Dec 2025, via Business Insider / Tekedia. Two GB200 NVL72 racks at Microsoft for OpenAI: cooling described as &ldquo;wasteful due to size and lack of facility water use&rdquo;; validation documentation required extensive rewriting; handover between Nvidia and Microsoft &ldquo;required a lot more solidification.&rdquo; Both racks achieved 100% pass rate on compute tests after support. DOI/URL: businessinsider.com/nvidia-microsoft-ai-gpu-blackwell-cooling-wasteful-2025-12.</li>
+    <li><strong>[J]</strong> TechInsights, &ldquo;The Hidden Environmental Cost of Advanced AI Chips,&rdquo; Aug 2025. Manufacturing emissions and water use for Blackwell (192GB) vs AMD MI300X. Method: Murphy yield model, 90% fab utilisation, 98% package yield, location-based Scope 2. Blackwell: ~20 cm&sup2; silicon, ~310 gal (1,173 L) water/IC, Scope 2 = 59% of mfg CO&#8322;e, ~20% less total CO&#8322;e than MI300X but ~2&times; more carbon-intensive per cm&sup2;. IC portion only. techinsights.com (Aug 2025).</li>
+    <li><strong>[L]</strong> Nvidia HGX B200 Product Carbon Footprint (PCF) Summary. ISO 14067-conformant, third-party reviewed by WSP. One HGX B200 baseboard (8&times; B200 GPUs, 32 kg): <strong>2,274 kg CO&#8322;e cradle-to-gate</strong>. Breakdown: HBM3e 49% (1,123 kg), ICs 28% (643 kg), thermal 12% (267 kg), assembly 5.6%, transport &lt;1%. Excludes use-phase and end-of-life. URL: images.nvidia.com/aem-dam/Solutions/documents/HGX-B200-PCF-Summary.pdf (Jul 2025).</li>
+    <li><strong>[K]</strong> Nvidia Sustainable Computing page, nvidia.com (accessed May 2026). Claims: GB200 NVL72 &ldquo;25&times; greater performance per watt vs prior generation&rdquo;; Blackwell Ultra NVFP4 &ldquo;50&times; more energy efficiency per token&rdquo;; AI tasks &ldquo;100,000&times; less power than a decade ago&rdquo; (no methodology cited). NVLink 5.0: 1.3 pJ/bit. Vendor marketing &mdash; per-token efficiency claims are directionally plausible but do not imply reduced total power consumption. Absolute power draw (~120 kW/rack) and Jevons&rsquo; Paradox effects not addressed.</li>
+  </ol>
+</div>
+<div class="ft">
+  The Cost of Blackwell &middot; v8.0 &middot; GB200 NVL72 &middot; 72&times; B200 + 36&times; Grace &middot; ~120 kW &middot; ~1.36 tonnes<br>
+  A confidence-banded proxy model &middot; Not a forensic audit &middot; Elemental data: A100 proxy (Falk et al. 2026) &middot; B200 ICP-OES not yet published
+</div>
+</div><!-- /wrap -->
+
+<script>
+// Smoke animation
+const cv=document.getElementById('sc'),cx=cv.getContext('2d');
+let W,H,pts=[];
+function rsz(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight}
+rsz();window.addEventListener('resize',rsz);
+class P{
+  constructor(){this.reset()}
+  reset(){this.x=Math.random()*W;this.y=H+20;this.vx=(Math.random()-.5)*.3;this.vy=-(Math.random()*.4+.15);this.life=0;this.maxL=180+Math.random()*200;this.sz=Math.random()*50+16;this.hue=Math.random()<.4?42:210}
+  tick(){this.x+=this.vx+Math.sin(this.life*.02)*.22;this.y+=this.vy;this.life++;if(this.life>this.maxL)this.reset()}
+  draw(){const t=this.life/this.maxL,a=t<.2?t/.2:t>.7?(1-t)/.3:.2,r=this.sz*(1+t*.8);const g=cx.createRadialGradient(this.x,this.y,0,this.x,this.y,r);const c=this.hue===42?`rgba(255,190,40,${a*.5})`:`rgba(50,110,200,${a*.32})`;g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=g;cx.beginPath();cx.arc(this.x,this.y,r,0,Math.PI*2);cx.fill()}
+}
+for(let i=0;i<32;i++){const p=new P;p.life=Math.random()*p.maxL;pts.push(p)}
+(function loop(){cx.clearRect(0,0,W,H);pts.forEach(p=>{p.tick();p.draw()});requestAnimationFrame(loop)})();
+
+// CO2 ticker — 1,334 kg/day
+const C=1334/86400,t0=Date.now();
+setInterval(()=>{const v=(((Date.now()-t0)/1000)*C).toFixed(4);document.getElementById('tv1').textContent=v;document.getElementById('tv2').textContent=v},100);
+
+// Tab switching
+const FM={
+  materials:'=SUM(materials) · GB200 NVL72: 72×B200 + 36×Grace + NVLink + liquid cooling · elemental proxy: A100 ICP-OES Falk et al. 2026 [P]',
+  carbon:'=120kW × 24h × 1.2PUE × 0.386kgCO₂/kWh = 1,334 kg/day · range 1,334–1,556 (PUE 1.2–1.4) · 2yr = ~974k–1.14M kg CO₂e',
+  pl:'=gross_revenue − opex − debt_service · reserved $3.30–3.50/GPU-hr [A] · rack ASP $1.5–2M [D] · 2.8yr lifespan [11]',
+  caveats:'=items_not_on_any_invoice() + unknown_quantities() → 10 caveats · v8.0'
+};
+const RF={materials:'A1',carbon:'C1',pl:'E1',caveats:'F1'};
+function sw(n,b){
+  document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const panel=document.getElementById('tab-'+n);
+  if(panel)panel.classList.add('active');
+  b.classList.add('active');
+  const fb=document.querySelector('.fbar');
+  if(fb)fb.innerHTML='<span class="cr">'+RF[n]+'</span><span><span class="fx">fx</span>'+(FM[n]||'')+'</span>';
+  if(panel){
+    panel.querySelectorAll('.row,.sub,.gt,.sec,.stat,.pr2').forEach((el,i)=>{
+      if(el.style.animation==='none')return;
+      el.style.animation='none';el.offsetHeight;el.style.animation='';
+      el.style.animationDelay=(i*.02)+'s';
+    });
+  }
+}
+</script>
+</body>
+</html>
